@@ -1,2 +1,4 @@
-# Standard library only for the current implementation.
-# Optional: numpy,pandas,matplotlib for custom analysis notebooks.
+numpy>=1.21
+pandas>=1.4
+matplotlib>=3.5
+triton>=2.1; python_version >= '3.8'

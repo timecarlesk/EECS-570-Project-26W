@@ -5,9 +5,9 @@ STENCIL_L_SWEEP = [2 ** 16, 2 ** 18, 2 ** 20, 2 ** 22, 2 ** 24, 2 ** 26]
 TILE_SWEEP = [16, 32, 64, 128]
 
 DEFAULT_GEMM_TILE = 64
-DEFAULT_STENCIL_TILE = 1024
+DEFAULT_STENCIL_TILE = 256
 DEFAULT_STENCIL_HALO = 2
-DEFAULT_STENCIL_FLOPS_PER_ELEM = 20
+DEFAULT_STENCIL_FLOPS_PER_ELEM = 28
 
 
 def ceil_div(x, y):
@@ -43,14 +43,17 @@ def make_gemm_point(n, tile_size=DEFAULT_GEMM_TILE):
     }
 
 
+DEFAULT_STENCIL_GRID_BLOCKS = 120
+
+
 def make_stencil_point(
     length,
     tile_elems=DEFAULT_STENCIL_TILE,
     halo=DEFAULT_STENCIL_HALO,
     flops_per_elem=DEFAULT_STENCIL_FLOPS_PER_ELEM,
+    grid_blocks=DEFAULT_STENCIL_GRID_BLOCKS,
 ):
     w_block_bytes = (tile_elems + 2 * halo) * 4
-    grid_blocks = ceil_div(length, tile_elems)
 
     # The proposal uses unrolling/multi-element per thread to boost stage compute density.
     flops_per_tile = float(tile_elems * flops_per_elem)

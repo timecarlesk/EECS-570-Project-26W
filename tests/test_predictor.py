@@ -34,6 +34,10 @@ class PredictorTests(unittest.TestCase):
         p3 = predict_one("gemm", "A40", 4096, 3, tile_size=64)
         self.assertTrue(p3["w_conc_over_l2"] >= p2["w_conc_over_l2"])
 
+    def test_l2_mode_plumbed(self):
+        pred = predict_one("gemm", "A40", 2048, 2, tile_size=64, l2_mode="nominal")
+        self.assertEqual(pred["l2_mode"], "nominal")
+
 
 if __name__ == "__main__":
     unittest.main()

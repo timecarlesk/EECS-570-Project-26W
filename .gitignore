@@ -1,1 +1,5 @@
 __pycache__/
+build/
+*.pyc
+outputs/test_*.csv
+outputs/test_*.json

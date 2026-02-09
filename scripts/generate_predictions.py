@@ -41,6 +41,7 @@ def parse_args():
         help="Comma separated problem sizes. Empty uses default sweep from proposal.",
     )
     parser.add_argument("--tile-size", type=int, default=None)
+    parser.add_argument("--l2-mode", choices=["effective", "nominal"], default="effective")
     parser.add_argument("--output", required=True)
     return parser.parse_args()
 
@@ -71,6 +72,7 @@ def main():
                     problem_size,
                     stage,
                     tile_size=args.tile_size,
+                    l2_mode=args.l2_mode,
                 )
                 rows.append(
                     {
@@ -95,6 +97,7 @@ def main():
                         "blocks_per_sm": pred.get("blocks_per_sm", 0),
                         "concurrent_blocks": pred.get("concurrent_blocks", 0),
                         "b_active": pred.get("b_active", 0),
+                        "l2_mode": pred.get("l2_mode", args.l2_mode),
                     }
                 )
 
@@ -120,6 +123,7 @@ def main():
         "blocks_per_sm",
         "concurrent_blocks",
         "b_active",
+        "l2_mode",
     ]
     write_csv(args.output, rows, fieldnames)
 

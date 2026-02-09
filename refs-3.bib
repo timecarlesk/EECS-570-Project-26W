@@ -1,0 +1,171 @@
+% ===== Core methodology =====
+@article{roofline,
+  author  = {Samuel Williams and Andrew Waterman and David Patterson},
+  title   = {Roofline: An Insightful Visual Performance Model for Multicore Architectures},
+  journal = {Communications of the ACM},
+  volume  = {52},
+  number  = {4},
+  pages   = {65--76},
+  year    = {2009},
+}
+
+% ===== cp.async / pipeline on single arch =====
+@inproceedings{dtcspmm,
+  author    = {Guohao Li and Zhekai Zheng and Yifei Rong and Luis Ceze},
+  title     = {{DTC-SpMM}: Bridging the Gap in Accelerating General Sparse Matrix Multiplication with Tensor Cores},
+  booktitle = {Proceedings of ASPLOS},
+  year      = {2024},
+}
+
+% ===== Hopper microbenchmarking =====
+@inproceedings{hopper_microbench,
+  author    = {Qiang Wang and Weile Luo and Xiaowen Chu},
+  title     = {Dissecting the {NVIDIA Hopper} Architecture through Microbenchmarking and Multiple Level Analysis},
+  booktitle = {Proceedings of IPDPS},
+  year      = {2024},
+}
+
+% ===== Pipeline depth / warp specialization =====
+@article{tawa,
+  author  = {Hongzheng Chen and Rohan Yadav and Jianfei Gao and Hasan Ferdous and Jianan Gu and Amir Hossein Nodehi Sabet and Ce Jin and Michael Garland and Kunle Olukotun},
+  title   = {Tawa: Automatic Warp Specialization for Modern {GPUs} with Asynchronous References},
+  journal = {arXiv preprint arXiv:2510.14719},
+  year    = {2025},
+}
+
+@article{twill,
+  author  = {Haicheng Wu and Jian Weng and others},
+  title   = {Optimal Software Pipelining and Warp Specialization for Tensor Core {GPUs}},
+  journal = {arXiv preprint arXiv:2512.18134},
+  year    = {2025},
+}
+
+% ===== L2 / cache / tile scheduling =====
+@inproceedings{hytis,
+  author    = {Yihua Wei and Zihan Liu and Xieyu Zhong and Licheng Guo and Jason Cong},
+  title     = {{HyTiS}: Hybrid Tile Scheduling for {GPU} {GEMM} with Enhanced Wave Utilization and Cache Locality},
+  booktitle = {Proceedings of SC},
+  year      = {2025},
+}
+
+@inproceedings{gpu_noc,
+  author    = {Jingwen Jin and Yifan Sun and Tor M. Aamodt},
+  title     = {Uncovering Real {GPU} {NoC} Characteristics: Reverse-Engineering and Simulation Validation},
+  booktitle = {Proceedings of MICRO},
+  year      = {2024},
+}
+
+@article{layer_conditions,
+  author  = {Dominik Ernst and Georg Hager and Jonas Th{\"u}rner and Gerhard Wellein},
+  title   = {Analytical Performance Estimation during Code Generation on Modern {GPUs}},
+  journal = {Journal of Parallel and Distributed Computing},
+  volume  = {173},
+  pages   = {152--163},
+  year    = {2023},
+}
+
+% ===== Cross-GPU lineage =====
+@inproceedings{svedin_lineage,
+  author    = {Martin Svedin and Steven {Westergren Norgren} and Hao Lu and Artur Podobas and Stefano Markidis},
+  title     = {Benchmarking the {NVIDIA GPU} Lineage: from {K80} to {A100} with Application to {HPC} Solvers},
+  booktitle = {Proceedings of HEART},
+  year      = {2021},
+}
+
+% ===== CUTLASS / FlashAttention =====
+@misc{cutlass3,
+  author       = {Vijay Thakkar and Pradeep Ramani and Cris Cecka and Aniket Shivam and Haicheng Lu and Ethan Yan and Jack Kosaian and Mark Nicely},
+  title        = {{CUTLASS}},
+  howpublished = {\url{https://github.com/NVIDIA/cutlass}},
+  year         = {2023},
+  note         = {NVIDIA},
+}
+
+@inproceedings{flashattn3,
+  author    = {Jay Shah and Ganesh Bikshandi and Ying Zhang and Vijay Thakkar and Pradeep Ramani and Tri Dao},
+  title     = {{FlashAttention-3}: Fast and Accurate Attention with Asynchrony and Low-precision},
+  booktitle = {Proceedings of NeurIPS},
+  year      = {2024},
+}
+
+% ===== Architecture references =====
+@article{hopper_ieee,
+  author  = {Jack Choquette},
+  title   = {{NVIDIA Hopper H100 GPU}: Scaling Performance},
+  journal = {IEEE Micro},
+  volume  = {43},
+  number  = {3},
+  pages   = {9--17},
+  year    = {2023},
+}
+
+@misc{cuda_guide,
+  author       = {{NVIDIA}},
+  title        = {{CUDA C++ Programming Guide}, v12.8: Asynchronous Data Copies},
+  howpublished = {\url{https://docs.nvidia.com/cuda/cuda-c-programming-guide/}},
+  year         = {2025},
+}
+
+@misc{mig_guide,
+  author       = {{NVIDIA}},
+  title        = {{NVIDIA Multi-Instance GPU} User Guide},
+  howpublished = {\url{https://docs.nvidia.com/datacenter/tesla/mig-user-guide/}},
+  year         = {2024},
+}
+
+@misc{nvidia_a100,
+  author       = {{NVIDIA}},
+  title        = {{NVIDIA A100} Tensor Core {GPU} Architecture},
+  howpublished = {\url{https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet.pdf}},
+  year         = {2020},
+}
+
+@misc{nvidia_h100,
+  author       = {{NVIDIA}},
+  title        = {{NVIDIA H100} Tensor Core {GPU} Datasheet},
+  howpublished = {\url{https://resources.nvidia.com/en-us-tensor-core}},
+  year         = {2023},
+}
+
+% ===== Analytical model references =====
+@inproceedings{acta,
+  author    = {Jingqi Xu and Guowei Zhang and others},
+  title     = {{ACTA}: Automatic Configuration of the Tensor Memory Accelerator for High-End {GPUs}},
+  booktitle = {Proceedings of the 17th Workshop on General Purpose Processing Using {GPU} ({GPGPU})},
+  year      = {2025},
+}
+
+@article{tritonblas,
+  author  = {Jiarui Guo and others},
+  title   = {{tritonBLAS}: Triton-based Analytical Approach for {GEMM} Kernel Parameter Selection},
+  journal = {arXiv preprint arXiv:2512.04226},
+  year    = {2025},
+}
+
+% ===== Warp specialization =====
+@inproceedings{wasp,
+  author    = {Tharindu Ranasinghe and Anand Raghunathan},
+  title     = {{WASP}: Workload-Aware Warp Scheduling for Productive and Efficient {GPU} Execution},
+  booktitle = {Proceedings of HPCA},
+  year      = {2024},
+}
+
+% ===== Triton =====
+@inproceedings{triton,
+  author    = {Philippe Tillet and Hsiang-Tsung Kung and David Cox},
+  title     = {Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations},
+  booktitle = {Proceedings of the 3rd {ACM SIGPLAN} International Workshop on Machine Learning and Programming Languages},
+  pages     = {10--19},
+  year      = {2019},
+}
+
+% ===== GPU microbenchmarking (cache) =====
+@inproceedings{mei_dissecting,
+  author    = {Xinxin Mei and Xiaowen Chu},
+  title     = {Dissecting {GPU} Memory Hierarchy through Microbenchmarking},
+  booktitle = {IEEE Transactions on Parallel and Distributed Systems},
+  volume    = {28},
+  number    = {1},
+  pages     = {72--86},
+  year      = {2017},
+}

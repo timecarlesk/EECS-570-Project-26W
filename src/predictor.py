@@ -12,7 +12,10 @@ def smem_per_sm_bytes(gpu_spec):
     return float(gpu_spec["smem_per_sm_kb"]) * 1024.0
 
 
-def l2_eff_bytes(gpu_spec):
+def l2_capacity_bytes(gpu_spec, l2_mode="effective"):
+    mode = str(l2_mode).strip().lower()
+    if mode == "nominal":
+        return float(gpu_spec["l2_nominal_mb"]) * 1024.0 * 1024.0
     return float(gpu_spec["l2_eff_mb"]) * 1024.0 * 1024.0
 
 
@@ -54,7 +57,7 @@ def compute_compute_cycles(workload_point, gpu_spec):
     return full_tile_cycles / float(overlap_chunks)
 
 
-def predict_speedup(workload_point, gpu_spec, stage):
+def predict_speedup(workload_point, gpu_spec, stage, l2_mode="effective"):
     stage = int(stage)
 
     if stage < 1:
@@ -98,7 +101,7 @@ def predict_speedup(workload_point, gpu_spec, stage):
         }
 
     w_conc = cur["w_conc_bytes"]
-    l2_bytes = l2_eff_bytes(gpu_spec)
+    l2_bytes = l2_capacity_bytes(gpu_spec, l2_mode=l2_mode)
     if w_conc <= 0:
         hit_fraction = 1.0
     else:
@@ -142,13 +145,14 @@ def predict_speedup(workload_point, gpu_spec, stage):
         "blocks_per_sm": int(cur["blocks_per_sm"]),
         "concurrent_blocks": int(cur["concurrent_blocks"]),
         "b_active": int(cur["b_active"]),
+        "l2_mode": str(l2_mode).strip().lower(),
     }
 
 
-def predict_one(workload, gpu_name, problem_size, stage, tile_size=None):
+def predict_one(workload, gpu_name, problem_size, stage, tile_size=None, l2_mode="effective"):
     gpu_spec = get_gpu_spec(gpu_name)
     point = make_workload_point(workload, problem_size, tile_size=tile_size)
-    out = predict_speedup(point, gpu_spec, stage)
+    out = predict_speedup(point, gpu_spec, stage, l2_mode=l2_mode)
     out["gpu"] = gpu_name
     out["workload"] = workload
     out["problem_size"] = int(problem_size)

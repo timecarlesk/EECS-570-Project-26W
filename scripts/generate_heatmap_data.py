@@ -31,6 +31,7 @@ def parse_args():
         "--stages",
         default=",".join(str(s) for s in DEFAULT_STAGE_CANDIDATES),
     )
+    parser.add_argument("--l2-mode", choices=["effective", "nominal"], default="effective")
     parser.add_argument("--output", required=True)
     return parser.parse_args()
 
@@ -53,7 +54,7 @@ def main():
             for n in sizes:
                 best = None
                 for s in stages:
-                    pred = predict_one("gemm", gpu, n, s, tile_size=tile)
+                    pred = predict_one("gemm", gpu, n, s, tile_size=tile, l2_mode=args.l2_mode)
                     if best is None or float(pred.get("pred_speedup", 0.0)) > float(best.get("pred_speedup", 0.0)):
                         best = pred
 
@@ -66,6 +67,7 @@ def main():
                         "w_conc_over_l2": "{:.6f}".format(float(best.get("w_conc_over_l2", 0.0))),
                         "best_stage": int(best.get("stage", 1)),
                         "best_pred_speedup": "{:.6f}".format(float(best.get("pred_speedup", 1.0))),
+                        "l2_mode": best.get("l2_mode", args.l2_mode),
                     }
                 )
 
@@ -77,6 +79,7 @@ def main():
         "w_conc_over_l2",
         "best_stage",
         "best_pred_speedup",
+        "l2_mode",
     ]
     write_csv(args.output, rows, fieldnames)
     print("Wrote {} rows to {}".format(len(rows), args.output))
