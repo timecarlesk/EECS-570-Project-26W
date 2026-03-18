@@ -346,17 +346,32 @@ H100 & 50\,MB & \textbf{28\,MB} \\
     \item[\textcolor{green!60!black}{\textbf{H3}}] \textbf{Supported.} A40 tile=64 stage=3: occupancy 3$\to$1 blocks/SM causes measurable slowdown.
 \end{itemize}
 
-\vspace{0.5em}
-\textbf{Surprising findings:}
-\begin{enumerate}\scriptsize
-    \item \textbf{280-cycle overhead floor} --- raw stencil compute is 28 cycles, but sync/async ops add $\geq$250 cycles per stage. Adding this floor reduced stencil MAPE from 146\% to 3.7\%.
-    \item \textbf{Occupancy loss is sub-linear} --- 3$\to$1 blocks/SM costs only $\sim$16\% throughput, not 42\%.
-    \item \textbf{L40S absorbs most workloads} --- 112\,MB effective L2 means $W_{\text{conc}} < C_{\text{L2}}$ for nearly all configs $\to$ pipeline barely helps.
-\end{enumerate}
-
 \vspace{0.3em}
-\centering\small
-\textbf{Bottom line:} $\sim$10\% MAPE across 4 architectures with zero fitted parameters.
+\textbf{Predicted Optimal Stage:}
+
+\vspace{0.2em}
+\renewcommand{\arraystretch}{1.15}
+\begin{table}
+\centering
+\scriptsize
+\begin{tabular}{@{}llcc@{}}
+\toprule
+\textbf{GPU} & \textbf{Workload} & \textbf{Best $S^*$} & \textbf{Speedup} \\
+\midrule
+\textcolor{gpuV100}{V100} & All & 1 & 1.00$\times$ \\
+\textcolor{gpuA40}{A40}   & All & 1 & 1.00$\times$ \\
+\textcolor{gpuL40S}{L40S}  & GEMM (tile=16) & 2 & 1.01$\times$ \\
+\textcolor{gpuL40S}{L40S}  & Stencil & 2 & 1.05$\times$ \\
+\textcolor{gpuH100}{H100}  & GEMM (tile=16) & 2--4 & 1.03$\times$ \\
+\textcolor{gpuH100}{H100}  & Stencil & 2 & 1.03$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.1em}
+\centering\scriptsize
+\textbf{Key insight:} Occupancy cost almost always outweighs latency hiding $\to$ $S^*{=}1$ dominates.\\[0.3em]
+\small\textbf{Bottom line:} $\sim$10\% MAPE across 4 architectures with zero fitted parameters.
 \end{column}
 \end{columns}
 \end{frame}
