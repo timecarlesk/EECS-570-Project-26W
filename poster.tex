@@ -1,0 +1,358 @@
+\documentclass[final]{beamer}
+\usepackage[orientation=portrait,size=custom,width=76.2,height=101.6,scale=0.74]{beamerposter}
+% 30in x 40in = 76.2cm x 101.6cm
+
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+% UMich colors
+\definecolor{umblue}{RGB}{0,39,76}
+\definecolor{ummaize}{RGB}{255,203,5}
+\definecolor{lightblue}{RGB}{230,240,250}
+\definecolor{gpuA40}{RGB}{70,130,180}
+\definecolor{gpuA100}{RGB}{60,179,113}
+\definecolor{gpuH100}{RGB}{255,140,0}
+\definecolor{gpuV100}{RGB}{169,169,169}
+\definecolor{gpuL40S}{RGB}{148,103,189}
+\definecolor{supported}{RGB}{34,139,34}
+\definecolor{partial}{RGB}{200,150,0}
+
+\setbeamercolor{block title}{fg=white,bg=umblue}
+\setbeamercolor{block body}{fg=black,bg=lightblue!15}
+\setbeamerfont{block title}{size=\large}
+
+\newcommand{\highlight}[1]{\colorbox{ummaize!40}{\textbf{#1}}}
+\newcommand{\cpasync}{\texttt{cp.async}}
+
+% Compact colored box
+\newcommand{\coloredbox}[3]{%
+  \begin{tikzpicture}
+    \node[inner sep=5pt, draw=#1, fill=#2, rounded corners=2pt, line width=1pt,
+          text width=\linewidth-16pt, anchor=center] {#3};
+  \end{tikzpicture}%
+}
+
+% Tighter list spacing
+\setlength{\leftmargini}{1.2em}
+
+\begin{document}
+
+\begin{frame}[t]
+
+% ============================================================
+% TITLE BAR
+% ============================================================
+\noindent\begin{tikzpicture}
+\node[fill=umblue, text width=\textwidth-10pt, inner sep=12pt, anchor=north west] at (0,0) {
+\centering
+{\fontsize{38}{44}\selectfont\bfseries\color{white} Predicting \cpasync{} Pipeline Effectiveness from Memory-Subsystem Parameters: A Cross-GPU Study}\\[10pt]
+{\Large\color{ummaize} Xiangchen Song \qquad Chenxin Geng \qquad Yuyang Feng \qquad Tian Xia}\\[4pt]
+{\normalsize\color{white} EECS 570 -- Parallel Computer Architecture \quad|\quad University of Michigan \quad|\quad Winter 2026}
+};
+\end{tikzpicture}
+
+\vspace{2pt}
+
+% ============================================================
+% ROW 1: Problem & Motivation | Predictive Model
+% ============================================================
+\begin{columns}[T]
+
+\begin{column}{0.47\textwidth}
+\begin{block}{1. Problem \& Motivation}
+NVIDIA \cpasync{} (Ampere+) enables \emph{asynchronous} global$\to$shared memory copies. CUTLASS, FlashAttention-3, and Triton use multi-stage \cpasync{} pipelines; depth $S$ is a key tuning knob.
+
+\vspace{4pt}
+\textbf{The Problem:}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Practitioners tune $S$ on \emph{one} GPU and assume it transfers
+  \item Effectiveness depends on \textbf{L2 capacity}, \textbf{BW/latency}, \textbf{SMEM} --- vary dramatically across GPUs
+\end{itemize}
+
+\vspace{3pt}
+\coloredbox{ummaize!80!black}{ummaize!20}{%
+\textbf{RQ:} Does optimal $S^*$ diverge across GPUs? Can a \emph{parameter-free} model predict this from architecture constants alone?%
+}
+
+\vspace{3pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
+    \fill[blue!15, rounded corners] (0,3.2) rectangle (8.5,4.2);
+    \fill[red!15, rounded corners]  (0,2.0) rectangle (8.5,3.0);
+    \node[font=\footnotesize\bfseries] at (4.25,4.5) {Multi-stage \cpasync{} Pipeline};
+    \foreach \i/\lab in {0/Stage 0, 1/Stage 1, 2/Stage 2, 3/Stage 3} {
+        \fill[blue!40, rounded corners] (0.15+\i*2.1, 3.4) rectangle (1.95+\i*2.1, 4.0);
+        \node at (1.05+\i*2.1, 3.7) {\lab};
+    }
+    \foreach \i/\lab in {0/Compute 0, 1/Compute 1, 2/Compute 2, 3/Compute 3} {
+        \fill[red!40, rounded corners] (0.15+\i*2.1, 2.2) rectangle (1.95+\i*2.1, 2.8);
+        \node at (1.05+\i*2.1, 2.5) {\lab};
+    }
+    \node[font=\footnotesize, blue!70!black, rotate=90] at (-0.4, 3.7) {Async Copy};
+    \node[font=\footnotesize, red!70!black, rotate=90]  at (-0.4, 2.5) {Math};
+    \draw[-{Stealth}, thick, gray] (0,1.6) -- (8.5,1.6) node[right] {time};
+    \draw[{Stealth}-{Stealth}, thick, green!50!black] (2.25,2.5) -- (2.25,3.7);
+    \node[green!50!black, font=\footnotesize\bfseries] at (3.1,3.1) {overlap};
+\end{tikzpicture}
+\end{center}
+\end{block}
+\end{column}
+
+\begin{column}{0.50\textwidth}
+\begin{block}{2. Parameter-Free Predictive Model}
+Predict \cpasync{} speedup from architecture constants --- \highlight{zero fitted parameters}.
+
+\vspace{3pt}
+\textbf{Inputs per GPU} (pointer-chase microbenchmark): effective L2 capacity $C_{\text{L2}}^{\text{eff}}$, L2 latency $L_{\text{L2}}$, DRAM latency $L_{\text{DRAM}}$.
+
+\vspace{3pt}
+\coloredbox{umblue!70}{lightblue!50}{%
+\vspace{-8pt}
+\begin{align*}
+h &= \min\!\bigl(1,\; C_{\text{L2}}^{\text{eff}} / W_{\text{conc}}\bigr) \quad\text{\small (L2 hit frac.)} &
+L_{\text{eff}} &= h \cdot L_{\text{L2}} + (1{-}h) \cdot L_{\text{DRAM}} \\
+T_{\text{comp}} &= \max\!\bigl(T_{\text{FLOP}},\; \mathbf{280}\bigr) \quad\text{\small (compute floor)} &
+W_{\text{conc}} &= w_{\text{blk}} \!\times\! S \!\times\! \text{blks}_{\text{active}}
+\end{align*}
+\vspace{-10pt}
+}
+
+\vspace{2pt}
+\coloredbox{ummaize!80!black}{ummaize!15}{%
+\vspace{-4pt}
+\[
+\widehat{S}_{\text{pred}} = \underbrace{\frac{\max(T_{\text{comp}},\; L_{\text{eff}})}{\max\!\bigl(T_{\text{comp}},\; L_{\text{eff}}/S\bigr)}}_{\text{overlap benefit}} \times \underbrace{\left(\frac{\text{Occ}(S)}{\text{Occ}(1)}\right)^{0.15}}_{\text{occupancy penalty}}
+\]
+\vspace{-6pt}
+}
+
+\vspace{3pt}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item \textbf{280-cycle floor}: without it stencil MAPE = 146\%; with it: \textbf{3.7\%}
+  \item \textbf{$\alpha{=}0.15$}: occupancy loss highly sub-linear (3$\to$1 blk/SM $\approx$ 16\% loss)
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\vspace{4pt}
+
+% ============================================================
+% ROW 2: Hypotheses + Methodology | Hardware + Results
+% ============================================================
+\begin{columns}[T]
+
+\begin{column}{0.47\textwidth}
+\begin{block}{3. Hypotheses}
+
+\coloredbox{supported!70}{supported!8}{%
+\textbf{H1 -- L2-Capacity Driven} \hfill \textcolor{supported}{\textbf{SUPPORTED}}\\
+Speedup inflects when $W_{\text{conc}} > C_{\text{L2}}$. \textit{\small L40S (112\,MB): minimal benefit; A40 (8\,MB): largest.}%
+}
+
+\vspace{3pt}
+
+\coloredbox{partial!70}{partial!8}{%
+\textbf{H2 -- Ridge-Point Driven} \hfill \textcolor{partial}{\textbf{PARTIAL}}\\
+\textit{\small Ridge alone insufficient --- must combine with L2 + latency.}%
+}
+
+\vspace{3pt}
+
+\coloredbox{supported!70}{supported!8}{%
+\textbf{H3 -- Latency--Occupancy Tension} \hfill \textcolor{supported}{\textbf{SUPPORTED}}\\
+$S^*$ balances latency hiding vs.\ occupancy loss. \textit{\small A40: non-monotonic $S^*(N)$.}%
+}
+
+\end{block}
+
+\vspace{4pt}
+
+\begin{block}{5. Kernels \& Methodology}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{11cm}@{}}
+\toprule
+\textbf{Kernel} & \textbf{Var.} & \textbf{Description} \\
+\midrule
+GEMM & V1, V3 & $C = AB$, compute-bound. $N{\in}\{256{-}8192\}$, tile ${\in}\{16{-}128\}$ \\
+Stencil & V1, V3 & 1D, memory-bound (AI${\approx}5$). $L{\in}\{2^{16}{-}2^{26}\}$ \\
+\bottomrule
+\end{tabular}
+\vspace{3pt}
+
+\textbf{V3}: \cpasync{} pipelined, $S \in \{2,3,4\}$. Median of 10 runs. cuBLAS/CPU validated. Same source on all GPUs.
+\end{block}
+\end{column}
+
+\begin{column}{0.50\textwidth}
+\begin{block}{4. Hardware: 5 GPU Architectures}
+
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & \textcolor{gpuV100}{\textbf{V100}} & \textcolor{gpuA40}{\textbf{A40}} & \textcolor{gpuA100}{\textbf{A100}} & \textcolor{gpuL40S}{\textbf{L40S}} & \textcolor{gpuH100}{\textbf{H100}} \\
+\midrule
+Arch       & Volta  & Ampere & Ampere    & Ada    & Hopper \\
+SMs        & 80     & 84     & 42        & 142    & 132 \\
+BW (GB/s)  & 900    & 696    & 968       & 864    & 3350 \\
+SMEM/SM    & 96\,K  & 100\,K & 164\,K    & 100\,K & 228\,K \\
+\textbf{Ridge} & 17.4 & \textbf{53.7} & \textbf{7.9} & 52.9 & 20.0 \\
+\midrule
+\textbf{L2 nom.} & 6 & 6 & 20 & 96 & 50\,MB \\
+\rowcolor{ummaize!25}
+\textbf{L2 eff.} & 8 & \textbf{8} & \textbf{24} & \textbf{112} & \highlight{28}\,MB \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+\coloredbox{ummaize!70!black}{ummaize!25}{%
+\textbf{Key:} L2 eff.\ $\neq$ nominal on \emph{all} GPUs! H100: 50$\to$\textbf{28\,MB} (slice locality). L40S: 96$\to$\textbf{112\,MB}.%
+}
+
+\end{block}
+
+\vspace{4pt}
+
+\begin{block}{6. Model Accuracy}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{GPU} & \textbf{GEMM MAPE} & \textbf{Stencil MAPE} \\
+\midrule
+\textcolor{gpuA40}{A40}       & 11.1\% & 4.1\% \\
+\textcolor{gpuA100}{A100 MIG} & 9.2\%  & 6.7\% \\
+\textcolor{gpuL40S}{L40S}     & 5.7\%  & 7.2\% \\
+\textcolor{gpuH100}{H100}     & 9.9\%  & 5.5\% \\
+\midrule
+\rowcolor{ummaize!25}
+\textbf{Overall} & \highlight{9.0\%} & \highlight{5.9\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+Leave-one-out: held-out GPU $<$15\% MAPE. \textbf{Zero fitted parameters.}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\vspace{4pt}
+
+% ============================================================
+% ROW 3: KEY FIGURES (full width)
+% ============================================================
+\begin{block}{7. Key Results}
+
+\begin{columns}[T]
+\begin{column}{0.58\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{outputs/figures/gemm_speedup_by_gpu.png}\\[-2pt]
+{\footnotesize (a) GEMM \cpasync{} speedup per GPU, all pipeline depths $S{=}2,3,4$}
+\end{center}
+\end{column}
+\begin{column}{0.40\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{outputs/figures/pred_vs_meas_scatter.png}\\[-2pt]
+{\footnotesize (b) Predicted vs measured (MAPE 11.9\%)}
+\end{center}
+\end{column}
+\end{columns}
+
+\vspace{2pt}
+
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{outputs/figures/l2_characterization_v2.png}\\[-2pt]
+{\footnotesize (c) L2 characterization: pointer-chase latency \& nominal vs effective capacity}
+\end{center}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{outputs/figures/gemm_cross_gpu_best.png}\\[-2pt]
+{\footnotesize (d) Cross-GPU best pipeline speedup vs.\ matrix size}
+\end{center}
+\end{column}
+\end{columns}
+
+\end{block}
+
+\vspace{4pt}
+
+% ============================================================
+% ROW 4: Conclusions | Triton + References
+% ============================================================
+\begin{columns}[T]
+
+\begin{column}{0.57\textwidth}
+\begin{block}{8. Key Discoveries \& Conclusions}
+\begin{enumerate}\setlength{\itemsep}{2pt}
+  \item \textbf{Effective L2 $\neq$ Nominal L2.} H100: only \textbf{28\,MB} (not 50\,MB) due to L2 slice locality. First documentation of MIG L2 behavior.
+
+  \item \textbf{280-cycle per-stage overhead floor.} Even 28 FLOP-cycle stencils incur $\geq$280 cycles of sync overhead. Reduced stencil MAPE: \textbf{146\% $\to$ 3.7\%}.
+
+  \item \textbf{Sub-linear occupancy loss} ($\alpha{=}0.15$): 3$\to$1 blocks/SM costs $\sim$16\%, not 42\%.
+
+  \item \textbf{Parameter-free model achieves $\sim$9\% MAPE} across 4 GPU architectures, 2 kernels, zero fitted coefficients.
+
+  \item \textbf{Triton pre-filter} prunes \cpasync{} stage candidates in autotuning search space.
+\end{enumerate}
+\end{block}
+\end{column}
+
+\begin{column}{0.40\textwidth}
+\begin{block}{9. Triton Pre-Filter}
+\coloredbox{umblue!50}{white}{%
+\small\ttfamily
+@autotune\_with\_cp\_async\_prefilter(\\
+\quad configs=[...], key=[`M',`N',`K'],\\
+\quad workload=`gemm', epsilon=0.03)\\
+@triton.jit\\
+def kernel(...):
+}%
+\vspace{2pt}
+
+\small Keeps only stages with $\hat{S} > 1{+}\epsilon$. Reduces search space, no false negatives.
+\end{block}
+
+\vspace{4pt}
+
+\begin{block}{10. References}
+\footnotesize
+{[1]} NVIDIA, CUDA Prog.\ Guide \S B.24, 2024.\quad
+{[2]} CUTLASS, NVIDIA, 2023.\\
+{[3]} FlashAttention-3, arXiv 2407.08691.\quad
+{[4]} Triton, MAPL 2019.\\
+{[5]} Jia et al., Dissecting GPU Memory, TPDS 2018.
+
+\vspace{4pt}
+\coloredbox{ummaize!70!black}{ummaize!20}{%
+\centering\small
+\textbf{Tools:} CMake, SLURM, CUDA 12.x, Nsight Compute, Triton\\
+\textbf{Platform:} UM Great Lakes HPC (V100, A40, A100-MIG, L40S, H100)%
+}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+\end{document}

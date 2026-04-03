@@ -1,13 +1,13 @@
 {
   "V100": {
-    "dram_latency_cycles": 412.7424,
-    "dram_latency_ns": 299.0887,
+    "dram_latency_cycles": 425.2452,
+    "dram_latency_ns": 308.1487,
     "l2_eff_mb": 8.0,
-    "l2_latency_cycles": 208.9875,
-    "l2_latency_ns": 151.4402,
-    "stream_bandwidth_dram_gbps": 219.8018,
-    "stream_bandwidth_l2_gbps": 29.4498,
-    "stream_bandwidth_peak_gbps": 292.5714,
+    "l2_latency_cycles": 221.2093,
+    "l2_latency_ns": 160.2966,
+    "stream_bandwidth_dram_gbps": 700.6994,
+    "stream_bandwidth_l2_gbps": 44.1617,
+    "stream_bandwidth_peak_gbps": 734.4552,
     "threshold": 0.5
   }
 }

@@ -1,0 +1,13 @@
+{
+  "A100_MIG_3g40gb": {
+    "dram_latency_cycles": 464.7065,
+    "dram_latency_ns": 329.5791,
+    "l2_eff_mb": 24.0,
+    "l2_latency_cycles": 207.2622,
+    "l2_latency_ns": 146.9945,
+    "stream_bandwidth_dram_gbps": 755.1188,
+    "stream_bandwidth_l2_gbps": 45.427,
+    "stream_bandwidth_peak_gbps": 849.3933,
+    "threshold": 0.5
+  }
+}

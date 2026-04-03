@@ -49,10 +49,19 @@ __global__ void streaming_read_kernel(const float* data, int n, int passes, floa
 
 std::vector<size_t> default_sizes_bytes() {
   const size_t mb = 1024ULL * 1024ULL;
+  const size_t kb = 1024ULL;
   return {
-      1 * mb,  2 * mb,  3 * mb,  4 * mb,  6 * mb,  8 * mb,  10 * mb,
-      12 * mb, 16 * mb, 20 * mb, 24 * mb, 28 * mb, 32 * mb, 36 * mb,
-      40 * mb, 48 * mb, 56 * mb, 64 * mb, 80 * mb, 96 * mb, 112 * mb,
+      1 * mb,  2 * mb,  3 * mb,  4 * mb,
+      4 * mb + 512 * kb,  5 * mb,  5 * mb + 512 * kb,
+      6 * mb,  6 * mb + 512 * kb,  7 * mb,  7 * mb + 512 * kb,
+      8 * mb,  10 * mb,
+      12 * mb, 14 * mb, 16 * mb,
+      17 * mb, 18 * mb, 19 * mb, 20 * mb, 21 * mb, 22 * mb, 23 * mb, 24 * mb,
+      26 * mb, 28 * mb, 32 * mb, 36 * mb,
+      40 * mb, 48 * mb, 56 * mb, 64 * mb, 80 * mb,
+      96 * mb,  97 * mb,  98 * mb,  99 * mb,  100 * mb, 101 * mb,
+      102 * mb, 103 * mb, 104 * mb, 105 * mb, 106 * mb, 107 * mb,
+      108 * mb, 109 * mb, 110 * mb, 111 * mb, 112 * mb,
       128 * mb,
   };
 }
