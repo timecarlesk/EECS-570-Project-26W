@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/gchenxin/AppData/Local/Programs//**)",
+      "Read(//c/Users/gchenxin/anaconda3/**)",
+      "Bash(ls /c/Python*/python.exe)",
+      "Read(//c/Users/gchenxin/**)"
+    ]
+  }
+}
