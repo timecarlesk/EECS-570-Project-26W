@@ -5,7 +5,8 @@
       "Read(//c/Users/gchenxin/anaconda3/**)",
       "Bash(ls /c/Python*/python.exe)",
       "Read(//c/Users/gchenxin/**)",
-      "Bash(\"/c/Users/gchenxin/AppData/Local/anaconda3/python.exe\" scripts/generate_step_figures.py)"
+      "Bash(\"/c/Users/gchenxin/AppData/Local/anaconda3/python.exe\" scripts/generate_step_figures.py)",
+      "Bash(\"/c/Users/gchenxin/AppData/Local/anaconda3/python.exe\" scripts/generate_poster_figures.py --figure 2)"
     ]
   }
 }

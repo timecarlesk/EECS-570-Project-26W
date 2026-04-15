@@ -125,7 +125,9 @@ def _load_pointer_chase(gpu_key, filename, pd):
         df = pd.read_csv(path)
     except OSError:
         return None
-    return df.groupby("size_bytes", as_index=False).first()
+    return (df.groupby("size_bytes", as_index=False).first()
+              .sort_values("size_bytes")
+              .reset_index(drop=True))
 
 POINTER_CHASE_FILES = {
     "V100":            ("v100",    "pointer_chase_raw.csv"),

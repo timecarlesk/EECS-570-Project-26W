@@ -139,10 +139,11 @@ def fig_pred_vs_meas(plt, np, df, out_dir, dpi):
                    color="#4682B4" if workload == "gemm" else "#FF8C00")
 
     max_v = max(float(df["pred_speedup"].max()),
-                float(df["measured_speedup"].max()), 1.05)
-    ax.plot([0.8, max_v], [0.8, max_v], "k--", linewidth=0.9, alpha=0.6)
-    ax.set_xlim(0.8, max_v)
-    ax.set_ylim(0.8, max_v)
+                float(df["measured_speedup"].max()), 1.05) + 0.05
+    min_v = 0.75
+    ax.plot([min_v, max_v], [min_v, max_v], "k--", linewidth=0.9, alpha=0.6)
+    ax.set_xlim(min_v, max_v)
+    ax.set_ylim(min_v, max_v)
     ax.set_xlabel("Predicted Speedup", fontsize=11)
     ax.set_ylabel("Measured Speedup", fontsize=11)
     ax.set_title("Predicted vs Measured Speedup", fontsize=12, fontweight="bold")
@@ -151,10 +152,11 @@ def fig_pred_vs_meas(plt, np, df, out_dir, dpi):
     ax.spines["right"].set_visible(False)
 
     mape = float(df["ape"].mean()) * 100.0
-    ax.text(0.05, 0.93, "MAPE = {:.1f}%".format(mape),
-            transform=ax.transAxes, fontsize=10,
+    ax.text(0.97, 0.05, "MAPE = {:.1f}%".format(mape),
+            transform=ax.transAxes, fontsize=10, ha="right", va="bottom",
             bbox=dict(boxstyle="round,pad=0.3", fc="#FFCB05", alpha=0.7))
-    ax.legend(fontsize=9, framealpha=0.8)
+    ax.legend(fontsize=9, framealpha=0.8, loc="lower right",
+              bbox_to_anchor=(0.97, 0.18))
 
     save(fig, os.path.join(out_dir, "pred_vs_meas_scatter.png"), dpi)
     plt.close(fig)
@@ -247,6 +249,7 @@ def fig_gemm_cross_gpu_best(plt, np, df, out_dir, dpi):
     ax.set_ylabel("Best cp.async Speedup (vs S=1)", fontsize=11)
     ax.set_title("Cross-GPU Best GEMM Pipeline Speedup", fontsize=12, fontweight="bold")
     ax.legend(fontsize=9, framealpha=0.8, ncol=2)
+    ax.set_ylim(0.95, 1.22)
     ax.grid(True, alpha=0.2)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
