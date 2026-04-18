@@ -1,0 +1,139 @@
+-- Configuring done (0.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build
+[ 66%] Built target microbench_pointer_chase
+[ 66%] Built target benchmark_stencil
+[100%] Built target benchmark_gemm
+[GEMM] GPU=L40S compute_capability=8.9 cp.async=yes optin_smem=101376
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=256
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=512
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=1024
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=2048
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=3072
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=4096
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=6144
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=8192
+[GEMM] wrote CSV: outputs/l40s/gemm_raw.csv
+[Stencil] GPU=L40S compute_capability=8.9 cp.async=yes
+[Stencil] finished L=65536
+[Stencil] finished L=262144
+[Stencil] finished L=1048576
+[Stencil] finished L=4194304
+[Stencil] finished L=16777216
+[Stencil] finished L=67108864
+[Stencil] wrote CSV: outputs/l40s/stencil_raw.csv
+[PointerChase] GPU=L40S core_clock_khz=2520000
+[PointerChase] size_bytes=1048576 cycles/load=286.993 ns/load=113.886 stream_gbps=44.6431
+[PointerChase] size_bytes=2097152 cycles/load=290.726 ns/load=115.368 stream_gbps=44.8877
+[PointerChase] size_bytes=3145728 cycles/load=291.838 ns/load=115.809 stream_gbps=45.0522
+[PointerChase] size_bytes=4194304 cycles/load=292.4 ns/load=116.032 stream_gbps=45.1039
+[PointerChase] size_bytes=4718592 cycles/load=292.557 ns/load=116.094 stream_gbps=50.7419
+[PointerChase] size_bytes=5242880 cycles/load=292.687 ns/load=116.145 stream_gbps=56.3411
+[PointerChase] size_bytes=5767168 cycles/load=292.777 ns/load=116.181 stream_gbps=61.9752
+[PointerChase] size_bytes=6291456 cycles/load=292.873 ns/load=116.22 stream_gbps=67.6094
+[PointerChase] size_bytes=6815744 cycles/load=292.962 ns/load=116.255 stream_gbps=73.2435
+[PointerChase] size_bytes=7340032 cycles/load=293.025 ns/load=116.28 stream_gbps=78.8776
+[PointerChase] size_bytes=7864320 cycles/load=293.09 ns/load=116.305 stream_gbps=84.5117
+[PointerChase] size_bytes=8388608 cycles/load=293.138 ns/load=116.325 stream_gbps=90.1458
+[PointerChase] size_bytes=10485760 cycles/load=293.291 ns/load=116.385 stream_gbps=112.605
+[PointerChase] size_bytes=12582912 cycles/load=293.384 ns/load=116.422 stream_gbps=135.129
+[PointerChase] size_bytes=14680064 cycles/load=293.45 ns/load=116.448 stream_gbps=157.647
+[PointerChase] size_bytes=16777216 cycles/load=293.502 ns/load=116.469 stream_gbps=180.168
+[PointerChase] size_bytes=17825792 cycles/load=293.526 ns/load=116.478 stream_gbps=188.705
+[PointerChase] size_bytes=18874368 cycles/load=293.548 ns/load=116.487 stream_gbps=197.134
+[PointerChase] size_bytes=19922944 cycles/load=293.562 ns/load=116.493 stream_gbps=205.34
+[PointerChase] size_bytes=20971520 cycles/load=293.577 ns/load=116.499 stream_gbps=213.333
+[PointerChase] size_bytes=22020096 cycles/load=293.586 ns/load=116.502 stream_gbps=223.854
+[PointerChase] size_bytes=23068672 cycles/load=293.587 ns/load=116.503 stream_gbps=234.514
+[PointerChase] size_bytes=24117248 cycles/load=293.599 ns/load=116.507 stream_gbps=245.019
+[PointerChase] size_bytes=25165824 cycles/load=293.61 ns/load=116.512 stream_gbps=255.833
+[PointerChase] size_bytes=27262976 cycles/load=293.634 ns/load=116.521 stream_gbps=284.368
+[PointerChase] size_bytes=29360128 cycles/load=293.645 ns/load=116.526 stream_gbps=314.645
+[PointerChase] size_bytes=33554432 cycles/load=293.676 ns/load=116.538 stream_gbps=359.101
+[PointerChase] size_bytes=37748736 cycles/load=294.802 ns/load=116.985 stream_gbps=382.754
+[PointerChase] size_bytes=41943040 cycles/load=295.699 ns/load=117.341 stream_gbps=447.65
+[PointerChase] size_bytes=50331648 cycles/load=297.044 ns/load=117.875 stream_gbps=508.688
+[PointerChase] size_bytes=58720256 cycles/load=298.013 ns/load=118.259 stream_gbps=589.656
+[PointerChase] size_bytes=67108864 cycles/load=298.738 ns/load=118.547 stream_gbps=673.459
+[PointerChase] size_bytes=83886080 cycles/load=299.749 ns/load=118.948 stream_gbps=845.626
+[PointerChase] size_bytes=100663296 cycles/load=303.449 ns/load=120.416 stream_gbps=1010.19
+[PointerChase] size_bytes=101711872 cycles/load=313.61 ns/load=124.448 stream_gbps=1020.71
+[PointerChase] size_bytes=102760448 cycles/load=323.35 ns/load=128.314 stream_gbps=1030.57
+[PointerChase] size_bytes=103809024 cycles/load=332.912 ns/load=132.108 stream_gbps=1041.09
+[PointerChase] size_bytes=104857600 cycles/load=341.898 ns/load=135.674 stream_gbps=1052.96
+[PointerChase] size_bytes=105906176 cycles/load=350.612 ns/load=139.132 stream_gbps=1074.54
+[PointerChase] size_bytes=106954752 cycles/load=359.139 ns/load=142.515 stream_gbps=1101.63
+[PointerChase] size_bytes=108003328 cycles/load=367.483 ns/load=145.827 stream_gbps=1126.54
+[PointerChase] size_bytes=109051904 cycles/load=375.717 ns/load=149.094 stream_gbps=1153.65
+[PointerChase] size_bytes=110100480 cycles/load=383.64 ns/load=152.238 stream_gbps=1150.72
+[PointerChase] size_bytes=111149056 cycles/load=391.44 ns/load=155.333 stream_gbps=1146.34
+[PointerChase] size_bytes=112197632 cycles/load=399.034 ns/load=158.347 stream_gbps=1139.11
+[PointerChase] size_bytes=113246208 cycles/load=406.523 ns/load=161.319 stream_gbps=1137.19
+[PointerChase] size_bytes=114294784 cycles/load=412.891 ns/load=163.846 stream_gbps=1147.72
+[PointerChase] size_bytes=115343360 cycles/load=419.257 ns/load=166.372 stream_gbps=1159
+[PointerChase] size_bytes=116391936 cycles/load=425.461 ns/load=168.834 stream_gbps=1166.56
+[PointerChase] size_bytes=117440512 cycles/load=431.704 ns/load=171.311 stream_gbps=1180.83
+[PointerChase] size_bytes=134217728 cycles/load=501.407 ns/load=198.971 stream_gbps=1316.48
+[PointerChase] wrote CSV: outputs/l40s/pointer_chase_raw.csv
++ cmake -S /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline -B /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build
++ cmake --build /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build -j
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/benchmark_gemm --output outputs/l40s/gemm_raw.csv --tile-sizes 16,32,64,128 --stages 2,3,4 --warmup 3 --iters 10 --run-v0 --gpu-name L40S
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/benchmark_stencil --output outputs/l40s/stencil_raw.csv --stages 2,3,4 --warmup 3 --iters 10 --gpu-name L40S
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/microbench_pointer_chase --output outputs/l40s/pointer_chase_raw.csv --gpu-name L40S
+Finished CUDA benchmarks.
+{
+  "L40S": {
+    "dram_latency_cycles": 431.7035,
+    "dram_latency_ns": 171.3109,
+    "l2_eff_mb": 96.0,
+    "l2_latency_cycles": 286.9933,
+    "l2_latency_ns": 113.8862,
+    "stream_bandwidth_dram_gbps": 1142.7239,
+    "stream_bandwidth_l2_gbps": 70.4264,
+    "stream_bandwidth_peak_gbps": 1316.4796,
+    "threshold": 0.1
+  }
+}
+
+Suggested gpu_specs.py updates:
+L40S -> l2_eff_mb=96.0, l2_latency_cycles=286.9933, dram_latency_cycles=431.7035
+Wrote outputs/l40s/l2_params.json
+Wrote 32 rows to outputs/gemm_predictions.csv
+Wrote 24 rows to outputs/stencil_predictions.csv
+Wrote 112 rows to outputs/l40s/measured_speedup.csv
+mode=effective: n=112 MAPE=6.248%
+GPU=L40S [mode=effective] MAPE=6.248%
+Workload=gemm [mode=effective] MAPE=5.751%
+Workload=stencil [mode=effective] MAPE=8.067%
+
+Leave-one-out report [effective]:
+held_out_gpu=L40S test_n=112 held_out_MAPE=6.248%
+mode=nominal: n=112 MAPE=6.248%
+GPU=L40S [mode=nominal] MAPE=6.248%
+Workload=gemm [mode=nominal] MAPE=5.751%
+Workload=stencil [mode=nominal] MAPE=8.067%
+
+Leave-one-out report [nominal]:
+held_out_gpu=L40S test_n=112 held_out_MAPE=6.248%
+
+L2 mode comparison: nominal-effective delta = 0.000%
++ /home/xxxchen/miniforge3/bin/python3 scripts/generate_predictions.py --workload gemm --gpus L40S --output outputs/gemm_predictions.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/generate_predictions.py --workload stencil --gpus L40S --output outputs/stencil_predictions.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/build_measured_speedup_csv.py --raw outputs/l40s/gemm_raw.csv,outputs/l40s/stencil_raw.csv --output outputs/l40s/measured_speedup.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/evaluate_mape.py --measured outputs/l40s/measured_speedup.csv --compare-l2-modes --leave-one-out

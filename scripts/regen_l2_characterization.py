@@ -45,8 +45,8 @@ POINTER_CHASE_FILES = {
     "V100":            ("v100",    "pointer_chase_raw.csv"),
     "A40":             ("a40",     "pointer_chase_raw.csv"),
     "A100_MIG_3g40gb": ("a100_mig","pointer_chase_raw.csv"),
-    "L40S":            ("l40s",    "pointer_chase_raw_l40s.csv"),
-    "H100_SXM5":       ("h100",    "pointer_chase_raw_h100.csv"),
+    "L40S":            ("l40s",    "pointer_chase_raw.csv"),
+    "H100_SXM5":       ("h100",    "pointer_chase_raw.csv"),
 }
 
 

@@ -1,0 +1,103 @@
+-- Configuring done (0.2s)
+-- Generating done (0.1s)
+-- Build files have been written to: /scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
+[ 66%] Built target microbench_pointer_chase
+[ 66%] Built target benchmark_stencil
+[100%] Built target benchmark_gemm
+[GEMM] GPU=A40 compute_capability=8.6 cp.async=yes optin_smem=101376
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=256
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=512
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=1024
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=2048
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=3072
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=4096
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=6144
+[GEMM] skip V3 tile=64 stage=4 due shared-memory limit.
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=8192
+[GEMM] wrote CSV: outputs/a40/gemm_raw.csv
+[Stencil] GPU=A40 compute_capability=8.6 cp.async=yes
+[Stencil] finished L=65536
+[Stencil] finished L=262144
+[Stencil] finished L=1048576
+[Stencil] finished L=4194304
+[Stencil] finished L=16777216
+[Stencil] finished L=67108864
+[Stencil] wrote CSV: outputs/a40/stencil_raw.csv
+[PointerChase] GPU=A40 core_clock_khz=1740000
+[PointerChase] size_bytes=1048576 cycles/load=256.367 ns/load=147.338 stream_gbps=36.49
+[PointerChase] size_bytes=2097152 cycles/load=256.353 ns/load=147.329 stream_gbps=36.8594
+[PointerChase] size_bytes=3145728 cycles/load=256.353 ns/load=147.329 stream_gbps=36.9564
+[PointerChase] size_bytes=4194304 cycles/load=256.351 ns/load=147.328 stream_gbps=36.9842
+[PointerChase] size_bytes=6291456 cycles/load=374.753 ns/load=215.375 stream_gbps=55.4763
+[PointerChase] size_bytes=8388608 cycles/load=556.02 ns/load=319.552 stream_gbps=73.9267
+[PointerChase] size_bytes=10485760 cycles/load=554.811 ns/load=318.857 stream_gbps=92.3042
+[PointerChase] size_bytes=12582912 cycles/load=556.068 ns/load=319.579 stream_gbps=110.703
+[PointerChase] size_bytes=16777216 cycles/load=556.063 ns/load=319.577 stream_gbps=147.355
+[PointerChase] size_bytes=20971520 cycles/load=556.093 ns/load=319.594 stream_gbps=174.763
+[PointerChase] size_bytes=25165824 cycles/load=556.069 ns/load=319.58 stream_gbps=209.269
+[PointerChase] size_bytes=29360128 cycles/load=556.068 ns/load=319.579 stream_gbps=257.437
+[PointerChase] size_bytes=33554432 cycles/load=556.07 ns/load=319.581 stream_gbps=293.554
+[PointerChase] size_bytes=37748736 cycles/load=556.079 ns/load=319.586 stream_gbps=312.738
+[PointerChase] size_bytes=41943040 cycles/load=556.066 ns/load=319.578 stream_gbps=366.532
+[PointerChase] wrote CSV: outputs/a40/pointer_chase_raw.csv
++ cmake -S /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline -B /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
++ cmake --build /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build -j
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/benchmark_gemm --output outputs/a40/gemm_raw.csv --tile-sizes 16,32,64,128 --stages 2,3,4 --warmup 3 --iters 10 --run-v0 --gpu-name A40
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/benchmark_stencil --output outputs/a40/stencil_raw.csv --stages 2,3,4 --warmup 3 --iters 10 --gpu-name A40
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/microbench_pointer_chase --output outputs/a40/pointer_chase_raw.csv --gpu-name A40
+Finished CUDA benchmarks.
+{
+  "A40": {
+    "dram_latency_cycles": 556.0697,
+    "dram_latency_ns": 319.5803,
+    "l2_eff_mb": 8.0,
+    "l2_latency_cycles": 256.3603,
+    "l2_latency_ns": 147.3335,
+    "stream_bandwidth_dram_gbps": 275.4955,
+    "stream_bandwidth_l2_gbps": 36.9703,
+    "stream_bandwidth_peak_gbps": 366.5324,
+    "threshold": 0.5
+  }
+}
+
+Suggested gpu_specs.py updates:
+A40 -> l2_eff_mb=8.0, l2_latency_cycles=256.3603, dram_latency_cycles=556.0697
+Wrote outputs/a40/l2_params.json
+Wrote 32 rows to outputs/gemm_predictions.csv
+Wrote 24 rows to outputs/stencil_predictions.csv
+Wrote 112 rows to outputs/a40/measured_speedup.csv
+mode=effective: n=112 MAPE=74.208%
+GPU=A40 [mode=effective] MAPE=74.208%
+Workload=gemm [mode=effective] MAPE=54.653%
+Workload=stencil [mode=effective] MAPE=145.909%
+
+Leave-one-out report [effective]:
+held_out_gpu=A40 test_n=112 held_out_MAPE=74.208%
+mode=nominal: n=112 MAPE=75.159%
+GPU=A40 [mode=nominal] MAPE=75.159%
+Workload=gemm [mode=nominal] MAPE=55.864%
+Workload=stencil [mode=nominal] MAPE=145.909%
+
+Leave-one-out report [nominal]:
+held_out_gpu=A40 test_n=112 held_out_MAPE=75.159%
+
+L2 mode comparison: nominal-effective delta = 0.951%
++ /usr/bin/python3 scripts/generate_predictions.py --workload gemm --gpus A40 --output outputs/gemm_predictions.csv
++ /usr/bin/python3 scripts/generate_predictions.py --workload stencil --gpus A40 --output outputs/stencil_predictions.csv
++ /usr/bin/python3 scripts/build_measured_speedup_csv.py --raw outputs/a40/gemm_raw.csv,outputs/a40/stencil_raw.csv --output outputs/a40/measured_speedup.csv
++ /usr/bin/python3 scripts/evaluate_mape.py --measured outputs/a40/measured_speedup.csv --compare-l2-modes --leave-one-out

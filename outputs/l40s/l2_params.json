@@ -1,0 +1,13 @@
+{
+  "L40S": {
+    "dram_latency_cycles": 431.7035,
+    "dram_latency_ns": 171.3109,
+    "l2_eff_mb": 96.0,
+    "l2_latency_cycles": 286.9933,
+    "l2_latency_ns": 113.8862,
+    "stream_bandwidth_dram_gbps": 1142.7239,
+    "stream_bandwidth_l2_gbps": 70.4264,
+    "stream_bandwidth_peak_gbps": 1316.4796,
+    "threshold": 0.1
+  }
+}

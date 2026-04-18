@@ -1,0 +1,61 @@
+-- Configuring done (0.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: /scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
+[ 33%] Built target benchmark_stencil
+[ 66%] Built target benchmark_gemm
+[100%] Built target microbench_pointer_chase
+[GEMM] GPU=V100 compute_capability=7.0 cp.async=no optin_smem=98304
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=256
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=512
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=1024
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=2048
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=3072
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=4096
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=6144
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=8192
+[GEMM] wrote CSV: outputs/v100/gemm_raw.csv
+[Stencil] GPU=V100 compute_capability=7.0 cp.async=no
+[Stencil] finished L=65536
+[Stencil] finished L=262144
+[Stencil] finished L=1048576
+[Stencil] finished L=4194304
+[Stencil] finished L=16777216
+[Stencil] finished L=67108864
+[Stencil] wrote CSV: outputs/v100/stencil_raw.csv
+[PointerChase] GPU=V100 core_clock_khz=1380000
+[PointerChase] size_bytes=1048576 cycles/load=221.2 ns/load=160.29 stream_gbps=29.205
+[PointerChase] size_bytes=2097152 cycles/load=221.192 ns/load=160.284 stream_gbps=29.362
+[PointerChase] size_bytes=3145728 cycles/load=221.209 ns/load=160.297 stream_gbps=29.4147
+[PointerChase] size_bytes=4194304 cycles/load=221.208 ns/load=160.296 stream_gbps=29.4544
+[PointerChase] size_bytes=6291456 cycles/load=221.625 ns/load=160.598 stream_gbps=44.1617
+[PointerChase] size_bytes=8388608 cycles/load=425.254 ns/load=308.155 stream_gbps=58.8823
+[PointerChase] size_bytes=10485760 cycles/load=424.465 ns/load=307.583 stream_gbps=73.5698
+[PointerChase] size_bytes=12582912 cycles/load=425.255 ns/load=308.155 stream_gbps=88.2442
+[PointerChase] size_bytes=16777216 cycles/load=425.249 ns/load=308.151 stream_gbps=117.606
+[PointerChase] size_bytes=20971520 cycles/load=425.257 ns/load=308.157 stream_gbps=139.201
+[PointerChase] size_bytes=25165824 cycles/load=425.244 ns/load=308.148 stream_gbps=166.902
+[PointerChase] size_bytes=29360128 cycles/load=425.265 ns/load=308.163 stream_gbps=205.166
+[PointerChase] size_bytes=33554432 cycles/load=425.258 ns/load=308.158 stream_gbps=234.158
+[PointerChase] size_bytes=37748736 cycles/load=425.235 ns/load=308.141 stream_gbps=249.714
+[PointerChase] size_bytes=41943040 cycles/load=425.257 ns/load=308.157 stream_gbps=292.18
+[PointerChase] size_bytes=50331648 cycles/load=425.252 ns/load=308.153 stream_gbps=331.828
+[PointerChase] size_bytes=58720256 cycles/load=425.254 ns/load=308.155 stream_gbps=387.296
+[PointerChase] size_bytes=67108864 cycles/load=425.249 ns/load=308.151 stream_gbps=441.878
+[PointerChase] size_bytes=83886080 cycles/load=425.248 ns/load=308.151 stream_gbps=548.878
+[PointerChase] size_bytes=100663296 cycles/load=425.257 ns/load=308.158 stream_gbps=652.912
+[PointerChase] size_bytes=101711872 cycles/load=425.251 ns/load=308.153 stream_gbps=659.987
+[PointerChase] size_bytes=102760448 cycles/load=425.25 ns/load=308.153 stream_gbps=665.418
+[PointerChase] size_bytes=103809024 cycles/load=425.25 ns/load=308.152 stream_gbps=673.875
+[PointerChase] size_bytes=104857600 cycles/load=425.245 ns/load=308.148 stream_gbps=678.427
+[PointerChase] size_bytes=105906176 cycles/load=425.243 ns/load=308.147 stream_gbps=689.206
+[PointerChase] size_bytes=106954752 cycles/load=424.45 ns/load=307.572 stream_gbps=700.699
+[PointerChase] size_bytes=108003328 cycles/load=425.244 ns/load=308.147 stream_gbps=715.975
+[PointerChase] size_bytes=109051904 cycles/load=425.246 ns/load=308.149 stream_gbps=734.455

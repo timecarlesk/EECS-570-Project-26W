@@ -14,8 +14,8 @@ def parse_args():
     parser.add_argument(
         "--threshold",
         type=float,
-        default=0.5,
-        help="Capacity knee threshold between L2 and DRAM plateaus (default=0.5)",
+        default=0.1,
+        help="Capacity knee threshold between L2 and DRAM plateaus (default=0.1)",
     )
     parser.add_argument("--output-json", default="")
     return parser.parse_args()
@@ -81,8 +81,8 @@ def main():
         ns_all = [p[2] for p in pts]
         sizes_all = [p[0] for p in pts]
 
-        l2_cycles = median(take_quantile_slice(cycles_all, 0.0, 0.30))
-        l2_ns = median(take_quantile_slice(ns_all, 0.0, 0.30))
+        l2_cycles = min(take_quantile_slice(cycles_all, 0.0, 0.10))
+        l2_ns = min(take_quantile_slice(ns_all, 0.0, 0.10))
 
         # Use the last 3 data points (largest arrays) for DRAM latency.
         # This is more robust than a fixed quantile when most data points

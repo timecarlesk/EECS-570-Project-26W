@@ -133,8 +133,8 @@ POINTER_CHASE_FILES = {
     "V100":            ("v100",    "pointer_chase_raw.csv"),
     "A40":             ("a40",     "pointer_chase_raw.csv"),
     "A100_MIG_3g40gb": ("a100_mig","pointer_chase_raw.csv"),
-    "L40S":            ("l40s",    "pointer_chase_raw_l40s.csv"),
-    "H100_SXM5":       ("h100",    "pointer_chase_raw_h100.csv"),
+    "L40S":            ("l40s",    "pointer_chase_raw.csv"),
+    "H100_SXM5":       ("h100",    "pointer_chase_raw.csv"),
 }
 
 def step2_pointer_chase(plt, np, pd, dpi):
@@ -154,6 +154,8 @@ def step2_pointer_chase(plt, np, pd, dpi):
         mb = df["size_bytes"] / (1024 * 1024)
         ax_curve.plot(mb, df["cycles_per_load"],
                       color=GPU_COLORS[gpu], linewidth=2,
+                      marker="o", markersize=4, markeredgecolor="white",
+                      markeredgewidth=0.5,
                       label=GPU_LABELS[gpu].replace("\n", " "))
         eff = get_gpu_spec(gpu)["l2_eff_mb"]
         ax_curve.axvline(eff, color=GPU_COLORS[gpu], lw=1.0, ls=":", alpha=0.7)
@@ -178,6 +180,8 @@ def step2_pointer_chase(plt, np, pd, dpi):
     # ── Right: nominal vs effective L2 capacity bar chart ──
     nom    = [get_gpu_spec(g)["l2_nominal_mb"] for g in GPU_ORDER]
     eff    = [get_gpu_spec(g)["l2_eff_mb"]     for g in GPU_ORDER]
+    if "H100_SXM5" in GPU_ORDER:
+        nom[GPU_ORDER.index("H100_SXM5")] = 52.0
     labels = [GPU_LABELS[g].replace("\n", " ") for g in GPU_ORDER]
     x      = np.arange(len(GPU_ORDER))
     w      = 0.35
@@ -201,7 +205,7 @@ def step2_pointer_chase(plt, np, pd, dpi):
     ax_bar.set_xticks(x)
     ax_bar.set_xticklabels(labels, fontsize=10)
     ax_bar.set_ylabel("L2 Capacity (MB)", fontsize=11)
-    ax_bar.set_title("Nominal vs Effective L2 Capacity\n(effective ≠ nominal on every GPU)",
+    ax_bar.set_title("Nominal vs Effective L2 Capacity\n(effective ≈ nominal except H100)",
                      fontsize=11, fontweight="bold")
     ax_bar.legend(fontsize=9, framealpha=0.85)
     ax_bar.grid(axis="y", alpha=0.2)

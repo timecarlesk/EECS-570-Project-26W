@@ -1,0 +1,113 @@
+-- Configuring done (0.2s)
+-- Generating done (0.3s)
+-- Build files have been written to: /scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
+[ 66%] Built target microbench_pointer_chase
+[ 66%] Built target benchmark_stencil
+[100%] Built target benchmark_gemm
+[GEMM] GPU=V100 compute_capability=7.0 cp.async=no optin_smem=98304
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=256
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=512
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=1024
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=2048
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=3072
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=4096
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=6144
+[GEMM] skip V1 tile=128 due shared-memory limit.
+[GEMM] finished N=8192
+[GEMM] wrote CSV: outputs/v100/gemm_raw.csv
+[Stencil] GPU=V100 compute_capability=7.0 cp.async=no
+[Stencil] finished L=65536
+[Stencil] finished L=262144
+[Stencil] finished L=1048576
+[Stencil] finished L=4194304
+[Stencil] finished L=16777216
+[Stencil] finished L=67108864
+[Stencil] wrote CSV: outputs/v100/stencil_raw.csv
+[PointerChase] GPU=V100 core_clock_khz=1380000
+[PointerChase] size_bytes=1048576 cycles/load=209.008 ns/load=151.455 stream_gbps=29.205
+[PointerChase] size_bytes=2097152 cycles/load=208.917 ns/load=151.389 stream_gbps=29.362
+[PointerChase] size_bytes=3145728 cycles/load=208.966 ns/load=151.425 stream_gbps=29.4323
+[PointerChase] size_bytes=4194304 cycles/load=208.967 ns/load=151.425 stream_gbps=29.4672
+[PointerChase] size_bytes=6291456 cycles/load=209.342 ns/load=151.697 stream_gbps=44.1617
+[PointerChase] size_bytes=8388608 cycles/load=412.798 ns/load=299.129 stream_gbps=58.8559
+[PointerChase] size_bytes=10485760 cycles/load=412.226 ns/load=298.715 stream_gbps=73.5698
+[PointerChase] size_bytes=12582912 cycles/load=413.112 ns/load=299.356 stream_gbps=88.2838
+[PointerChase] size_bytes=16777216 cycles/load=413.05 ns/load=299.311 stream_gbps=117.657
+[PointerChase] size_bytes=20971520 cycles/load=412.734 ns/load=299.082 stream_gbps=139.261
+[PointerChase] size_bytes=25165824 cycles/load=412.751 ns/load=299.095 stream_gbps=166.971
+[PointerChase] size_bytes=29360128 cycles/load=412.827 ns/load=299.15 stream_gbps=205.442
+[PointerChase] size_bytes=33554432 cycles/load=412.713 ns/load=299.067 stream_gbps=234.162
+[PointerChase] size_bytes=37748736 cycles/load=412.76 ns/load=299.102 stream_gbps=249.714
+[PointerChase] size_bytes=41943040 cycles/load=412.728 ns/load=299.078 stream_gbps=292.571
+[PointerChase] wrote CSV: outputs/v100/pointer_chase_raw.csv
++ cmake -S /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline -B /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
++ cmake --build /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build -j
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/benchmark_gemm --output outputs/v100/gemm_raw.csv --tile-sizes 16,32,64,128 --stages 2,3,4 --warmup 3 --iters 10 --run-v0 --gpu-name V100
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/benchmark_stencil --output outputs/v100/stencil_raw.csv --stages 2,3,4 --warmup 3 --iters 10 --gpu-name V100
++ /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build/microbench_pointer_chase --output outputs/v100/pointer_chase_raw.csv --gpu-name V100
+Finished CUDA benchmarks.
+{
+  "V100": {
+    "dram_latency_cycles": 412.7424,
+    "dram_latency_ns": 299.0887,
+    "l2_eff_mb": 8.0,
+    "l2_latency_cycles": 208.9875,
+    "l2_latency_ns": 151.4402,
+    "stream_bandwidth_dram_gbps": 219.8018,
+    "stream_bandwidth_l2_gbps": 29.4498,
+    "stream_bandwidth_peak_gbps": 292.5714,
+    "threshold": 0.5
+  }
+}
+
+Suggested gpu_specs.py updates:
+V100 -> l2_eff_mb=8.0, l2_latency_cycles=208.9875, dram_latency_cycles=412.7424
+Wrote outputs/v100/l2_params.json
+Wrote 32 rows to outputs/gemm_predictions.csv
+Wrote 24 rows to outputs/stencil_predictions.csv
+Wrote 30 rows to outputs/v100/measured_speedup.csv
+gemm V100 size=1024 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=1024 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=1024 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=2048 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=2048 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=2048 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=256 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=256 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=256 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=3072 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=3072 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=3072 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=4096 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=4096 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=4096 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=512 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=512 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=512 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=6144 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=6144 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=6144 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=8192 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=8192 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+gemm V100 size=8192 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=1048576 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=16777216 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=262144 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=4194304 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=65536 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+stencil V100 size=67108864 S=1 measured=1.000000 pred=1.000000 APE=0.0000 [effective]
+mode=effective: n=30 MAPE=0.000%
+GPU=V100 [mode=effective] MAPE=0.000%
+Workload=gemm [mode=effective] MAPE=0.000%
+Workload=stencil [mode=effective] MAPE=0.000%
++ /usr/bin/python3 scripts/generate_predictions.py --workload gemm --gpus V100 --output outputs/gemm_predictions.csv
++ /usr/bin/python3 scripts/generate_predictions.py --workload stencil --gpus V100 --output outputs/stencil_predictions.csv
++ /usr/bin/python3 scripts/build_measured_speedup_csv.py --raw outputs/v100/gemm_raw.csv,outputs/v100/stencil_raw.csv --output outputs/v100/measured_speedup.csv
++ /usr/bin/python3 scripts/evaluate_mape.py --measured outputs/v100/measured_speedup.csv

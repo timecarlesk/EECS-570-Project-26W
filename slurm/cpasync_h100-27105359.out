@@ -1,0 +1,147 @@
+-- Configuring done (0.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build
+[ 83%] Built target microbench_pointer_chase
+[ 83%] Built target benchmark_stencil
+[100%] Built target benchmark_gemm
+[GEMM] GPU=H100_SXM5 compute_capability=9.0 cp.async=yes optin_smem=232448
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=256
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=512
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=1024
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=2048
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=3072
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=4096
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=6144
+[GEMM] skip V3 tile=128 stage=2 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=3 due shared-memory limit.
+[GEMM] skip V3 tile=128 stage=4 due shared-memory limit.
+[GEMM] finished N=8192
+[GEMM] wrote CSV: outputs/h100/gemm_raw.csv
+[Stencil] GPU=H100_SXM5 compute_capability=9.0 cp.async=yes
+[Stencil] finished L=65536
+[Stencil] finished L=262144
+[Stencil] finished L=1048576
+[Stencil] finished L=4194304
+[Stencil] finished L=16777216
+[Stencil] finished L=67108864
+[Stencil] wrote CSV: outputs/h100/stencil_raw.csv
+[PointerChase] GPU=H100_SXM5 core_clock_khz=1980000
+[PointerChase] size_bytes=1048576 cycles/load=263.944 ns/load=133.305 stream_gbps=37.8247
+[PointerChase] size_bytes=2097152 cycles/load=273.621 ns/load=138.192 stream_gbps=38.1411
+[PointerChase] size_bytes=3145728 cycles/load=276.949 ns/load=139.873 stream_gbps=38.2441
+[PointerChase] size_bytes=4194304 cycles/load=278.58 ns/load=140.697 stream_gbps=38.2951
+[PointerChase] size_bytes=4718592 cycles/load=279.033 ns/load=140.926 stream_gbps=43.0741
+[PointerChase] size_bytes=5242880 cycles/load=279.541 ns/load=141.182 stream_gbps=47.8513
+[PointerChase] size_bytes=5767168 cycles/load=279.807 ns/load=141.317 stream_gbps=52.6394
+[PointerChase] size_bytes=6291456 cycles/load=280.093 ns/load=141.461 stream_gbps=57.4227
+[PointerChase] size_bytes=6815744 cycles/load=280.352 ns/load=141.592 stream_gbps=62.2158
+[PointerChase] size_bytes=7340032 cycles/load=280.496 ns/load=141.665 stream_gbps=66.9968
+[PointerChase] size_bytes=7864320 cycles/load=280.759 ns/load=141.798 stream_gbps=71.7875
+[PointerChase] size_bytes=8388608 cycles/load=280.847 ns/load=141.842 stream_gbps=76.5803
+[PointerChase] size_bytes=10485760 cycles/load=281.349 ns/load=142.095 stream_gbps=95.6608
+[PointerChase] size_bytes=12582912 cycles/load=281.58 ns/load=142.212 stream_gbps=114.801
+[PointerChase] size_bytes=14680064 cycles/load=281.808 ns/load=142.327 stream_gbps=133.859
+[PointerChase] size_bytes=16777216 cycles/load=281.97 ns/load=142.409 stream_gbps=153.004
+[PointerChase] size_bytes=17825792 cycles/load=282.028 ns/load=142.438 stream_gbps=160.278
+[PointerChase] size_bytes=18874368 cycles/load=282.092 ns/load=142.471 stream_gbps=167.412
+[PointerChase] size_bytes=19922944 cycles/load=282.151 ns/load=142.5 stream_gbps=174.38
+[PointerChase] size_bytes=20971520 cycles/load=282.2 ns/load=142.525 stream_gbps=181.164
+[PointerChase] size_bytes=22020096 cycles/load=283.22 ns/load=143.04 stream_gbps=190.15
+[PointerChase] size_bytes=23068672 cycles/load=283.443 ns/load=143.153 stream_gbps=199.201
+[PointerChase] size_bytes=24117248 cycles/load=284.661 ns/load=143.768 stream_gbps=208.277
+[PointerChase] size_bytes=25165824 cycles/load=285.946 ns/load=144.417 stream_gbps=217.299
+[PointerChase] size_bytes=27262976 cycles/load=305.338 ns/load=154.211 stream_gbps=241.637
+[PointerChase] size_bytes=29360128 cycles/load=334.757 ns/load=169.069 stream_gbps=267.372
+[PointerChase] size_bytes=33554432 cycles/load=376.524 ns/load=190.164 stream_gbps=305.429
+[PointerChase] size_bytes=37748736 cycles/load=402.838 ns/load=203.454 stream_gbps=325.493
+[PointerChase] size_bytes=41943040 cycles/load=421.563 ns/load=212.91 stream_gbps=380.705
+[PointerChase] size_bytes=50331648 cycles/load=448.939 ns/load=226.737 stream_gbps=432.068
+[PointerChase] size_bytes=58720256 cycles/load=496.798 ns/load=250.908 stream_gbps=503.371
+[PointerChase] size_bytes=67108864 cycles/load=533.563 ns/load=269.476 stream_gbps=573.845
+[PointerChase] size_bytes=83886080 cycles/load=575.311 ns/load=290.561 stream_gbps=715.19
+[PointerChase] size_bytes=100663296 cycles/load=598.86 ns/load=302.455 stream_gbps=855.5
+[PointerChase] size_bytes=101711872 cycles/load=600.017 ns/load=303.039 stream_gbps=865.221
+[PointerChase] size_bytes=102760448 cycles/load=601.166 ns/load=303.619 stream_gbps=873.665
+[PointerChase] size_bytes=103809024 cycles/load=602.147 ns/load=304.115 stream_gbps=883.135
+[PointerChase] size_bytes=104857600 cycles/load=603.293 ns/load=304.694 stream_gbps=891.889
+[PointerChase] size_bytes=105906176 cycles/load=604.242 ns/load=305.172 stream_gbps=909.581
+[PointerChase] size_bytes=106954752 cycles/load=605.273 ns/load=305.693 stream_gbps=932.279
+[PointerChase] size_bytes=108003328 cycles/load=606.193 ns/load=306.158 stream_gbps=952.73
+[PointerChase] size_bytes=109051904 cycles/load=607.14 ns/load=306.636 stream_gbps=976.398
+[PointerChase] size_bytes=110100480 cycles/load=608.101 ns/load=307.122 stream_gbps=972.963
+[PointerChase] size_bytes=111149056 cycles/load=608.981 ns/load=307.566 stream_gbps=968.501
+[PointerChase] size_bytes=112197632 cycles/load=609.932 ns/load=308.046 stream_gbps=966.221
+[PointerChase] size_bytes=113246208 cycles/load=610.779 ns/load=308.474 stream_gbps=960.74
+[PointerChase] size_bytes=114294784 cycles/load=611.624 ns/load=308.901 stream_gbps=967.419
+[PointerChase] size_bytes=115343360 cycles/load=612.5 ns/load=309.344 stream_gbps=979.378
+[PointerChase] size_bytes=116391936 cycles/load=613.247 ns/load=309.721 stream_gbps=986.389
+[PointerChase] size_bytes=117440512 cycles/load=614.028 ns/load=310.115 stream_gbps=996.762
+[PointerChase] size_bytes=134217728 cycles/load=624.776 ns/load=315.543 stream_gbps=1130.27
+[PointerChase] wrote CSV: outputs/h100/pointer_chase_raw.csv
++ cmake -S /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline -B /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build
++ cmake --build /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build -j
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/benchmark_gemm --output outputs/h100/gemm_raw.csv --tile-sizes 16,32,64,128 --stages 2,3,4 --warmup 3 --iters 10 --run-v0 --gpu-name H100_SXM5
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/benchmark_stencil --output outputs/h100/stencil_raw.csv --stages 2,3,4 --warmup 3 --iters 10 --gpu-name H100_SXM5
++ /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/microbench_pointer_chase --output outputs/h100/pointer_chase_raw.csv --gpu-name H100_SXM5
+Finished CUDA benchmarks.
+{
+  "H100_SXM5": {
+    "dram_latency_cycles": 614.0282,
+    "dram_latency_ns": 310.1153,
+    "l2_eff_mb": 26.0,
+    "l2_latency_cycles": 263.9441,
+    "l2_latency_ns": 133.3051,
+    "stream_bandwidth_dram_gbps": 966.8204,
+    "stream_bandwidth_l2_gbps": 59.8192,
+    "stream_bandwidth_peak_gbps": 1130.2736,
+    "threshold": 0.1
+  }
+}
+
+Suggested gpu_specs.py updates:
+H100_SXM5 -> l2_eff_mb=26.0, l2_latency_cycles=263.9441, dram_latency_cycles=614.0282
+Wrote outputs/h100/l2_params.json
+Wrote 32 rows to outputs/gemm_predictions.csv
+Wrote 24 rows to outputs/stencil_predictions.csv
+Wrote 128 rows to outputs/h100/measured_speedup.csv
+mode=effective: n=128 MAPE=8.896%
+GPU=H100_SXM5 [mode=effective] MAPE=8.896%
+Workload=gemm [mode=effective] MAPE=9.902%
+Workload=stencil [mode=effective] MAPE=4.535%
+
+Leave-one-out report [effective]:
+held_out_gpu=H100_SXM5 test_n=128 held_out_MAPE=8.896%
+mode=nominal: n=128 MAPE=8.997%
+GPU=H100_SXM5 [mode=nominal] MAPE=8.997%
+Workload=gemm [mode=nominal] MAPE=10.027%
+Workload=stencil [mode=nominal] MAPE=4.535%
+
+Leave-one-out report [nominal]:
+held_out_gpu=H100_SXM5 test_n=128 held_out_MAPE=8.997%
+
+L2 mode comparison: nominal-effective delta = 0.101%
++ /home/xxxchen/miniforge3/bin/python3 scripts/generate_predictions.py --workload gemm --gpus H100_SXM5 --output outputs/gemm_predictions.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/generate_predictions.py --workload stencil --gpus H100_SXM5 --output outputs/stencil_predictions.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/build_measured_speedup_csv.py --raw outputs/h100/gemm_raw.csv,outputs/h100/stencil_raw.csv --output outputs/h100/measured_speedup.csv
++ /home/xxxchen/miniforge3/bin/python3 scripts/evaluate_mape.py --measured outputs/h100/measured_speedup.csv --compare-l2-modes --leave-one-out

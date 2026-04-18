@@ -1,0 +1,14 @@
+CMake Error: The current CMakeCache.txt directory /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build/CMakeCache.txt is different than the directory /scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+CMake Error: The source "/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/CMakeLists.txt" does not match the source "/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
++ cmake -S /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline -B /scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build
+Traceback (most recent call last):
+  File "/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/scripts/run_cuda_benchmarks.py", line 133, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/scripts/run_cuda_benchmarks.py", line 69, in main
+    run(["cmake", "-S", ROOT, "-B", args.build_dir])
+  File "/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/scripts/run_cuda_benchmarks.py", line 16, in run
+    subprocess.check_call(cmd, cwd=cwd)
+  File "/home/xxxchen/miniforge3/lib/python3.12/subprocess.py", line 413, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['cmake', '-S', '/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline', '-B', '/scratch/mcity_project_root/mcity_project/xxxchen/EECS_570/project2_cp_async_pipeline/build']' returned non-zero exit status 1.

@@ -1,0 +1,131 @@
+-- The CXX compiler identification is GNU 8.5.0
+-- The CUDA compiler identification is NVIDIA 12.8.93
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /sw/pkgs/arc/cuda/12.8.1/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Found CUDAToolkit: /sw/pkgs/arc/cuda/12.8.1/include (found version "12.8.93") 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done (4.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
+[ 16%] Building CUDA object CMakeFiles/benchmark_stencil.dir/cuda/src/benchmark_stencil.cu.o
+[ 33%] Building CUDA object CMakeFiles/microbench_pointer_chase.dir/cuda/src/microbench_pointer_chase.cu.o
+[ 50%] Building CUDA object CMakeFiles/benchmark_gemm.dir/cuda/src/benchmark_gemm.cu.o
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::stencil_v3_kernel<(int)256, (int)2> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::stencil_v3_kernel<(int)256, (int)3> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::stencil_v3_kernel<(int)256, (int)4> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(113): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(80): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::stencil_v1_kernel<(int)256> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu(80): error: identifier "ceil_div_int" is undefined in device code
+
+8 errors detected in the compilation of "/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_stencil.cu".
+gmake[2]: *** [CMakeFiles/benchmark_stencil.dir/build.make:77: CMakeFiles/benchmark_stencil.dir/cuda/src/benchmark_stencil.cu.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:113: CMakeFiles/benchmark_stencil.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v1_kernel<(int)16> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v1_kernel<(int)32> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v1_kernel<(int)64> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v1_kernel<(int)128> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(136): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)16, (int)2> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)16, (int)3> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)16, (int)4> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)32, (int)2> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)32, (int)3> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)32, (int)4> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)64, (int)2> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)64, (int)3> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)64, (int)4> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)128, (int)2> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)128, (int)3> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: calling a __host__ function("ceil_div_int(int, int)") from a __global__ function("_NV_ANON_NAMESPACE::gemm_v3_kernel<(int)128, (int)4> ") is not allowed
+
+/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu(210): error: identifier "ceil_div_int" is undefined in device code
+
+32 errors detected in the compilation of "/scratch/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/cuda/src/benchmark_gemm.cu".
+gmake[2]: *** [CMakeFiles/benchmark_gemm.dir/build.make:77: CMakeFiles/benchmark_gemm.dir/cuda/src/benchmark_gemm.cu.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/benchmark_gemm.dir/all] Error 2
+[ 66%] Linking CUDA executable microbench_pointer_chase
+[ 66%] Built target microbench_pointer_chase
+gmake: *** [Makefile:91: all] Error 2
++ cmake -S /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline -B /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build
++ cmake --build /gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build -j
+Traceback (most recent call last):
+  File "scripts/run_cuda_benchmarks.py", line 133, in <module>
+    sys.exit(main())
+  File "scripts/run_cuda_benchmarks.py", line 70, in main
+    run(["cmake", "--build", args.build_dir, "-j"])
+  File "scripts/run_cuda_benchmarks.py", line 16, in run
+    subprocess.check_call(cmd, cwd=cwd)
+  File "/usr/lib64/python3.6/subprocess.py", line 311, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['cmake', '--build', '/gpfs/accounts/eecs570w26s001_class_root/eecs570w26s001_class/xxxchen/project2_cp_async_pipeline/build', '-j']' returned non-zero exit status 2.

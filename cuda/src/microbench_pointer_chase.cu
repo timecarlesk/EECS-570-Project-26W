@@ -1,6 +1,7 @@
 #include "benchmark_common.cuh"
 
 #include <numeric>
+#include <random>
 #include <vector>
 
 namespace {
@@ -73,6 +74,17 @@ void build_stride_ring(std::vector<int>* host_next, int stride) {
   }
 }
 
+void build_random_permutation(std::vector<int>* host_next) {
+  const int n = static_cast<int>(host_next->size());
+  std::vector<int> perm(n);
+  std::iota(perm.begin(), perm.end(), 0);
+  std::mt19937 rng(0xC0FFEE);
+  std::shuffle(perm.begin(), perm.end(), rng);
+  for (int i = 0; i < n; ++i) {
+    (*host_next)[perm[i]] = perm[(i + 1) % n];
+  }
+}
+
 void fill_stream_data(std::vector<float>* data) {
   for (size_t i = 0; i < data->size(); ++i) {
     (*data)[i] = static_cast<float>((static_cast<int>(i * 7) % 19) - 9) / 9.0f;
@@ -120,7 +132,7 @@ int main(int argc, char** argv) {
     const size_t numel = std::max<size_t>(size_bytes / sizeof(int), static_cast<size_t>(stride + 1));
 
     std::vector<int> h_next(numel);
-    build_stride_ring(&h_next, stride);
+    build_random_permutation(&h_next);
 
     int* d_next = nullptr;
     CUDA_CHECK(cudaMalloc(&d_next, numel * sizeof(int)));

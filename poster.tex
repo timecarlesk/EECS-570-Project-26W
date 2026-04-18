@@ -304,11 +304,11 @@ Leave-one-out: held-out GPU $<$15\% MAPE. \textbf{Zero fitted parameters.}
 
 \begin{block}{5. Key Discoveries \& Conclusions}
 \begin{enumerate}\setlength{\itemsep}{6pt}
-  \item \textbf{Effective L2 $\neq$ Nominal L2.} H100: only \textbf{28\,MB} (not 50\,MB) due to L2 slice locality. First documentation of MIG L2 behavior.
-  \item \textbf{280-cycle per-stage overhead floor.} Even 28 FLOP-cycle stencils incur $\geq$280 cycles of sync overhead. Reduced stencil MAPE: \textbf{146\% $\to$ 3.7\%}.
-  \item \textbf{Sub-linear occupancy loss} ($\alpha{=}0.15$): 3$\to$1 blocks/SM costs $\sim$16\%, not 42\%.
+  \item \textbf{Effective L2 $\neq$ Nominal L2.} H100: only \textbf{26\,MB} (not 52\,MB) due to L2 slice locality --- first published characterization. The other 4 GPUs (V100, A40, A100 MIG, L40S) all show effective $\approx$ nominal.
+  \item \textbf{280-cycle per-stage overhead floor.} Even 28 FLOP-cycle stencils incur $\geq$280 cycles of sync overhead. Reduced H100 stencil MAPE: \textbf{146\% $\to$ 3.7\%}.
+  \item \textbf{Sub-linear occupancy loss} ($\alpha{=}0.15$): 3$\to$1 blocks/SM costs $\sim$16\%, not 67\%.
   \item \textbf{Parameter-free model achieves $\sim$9\% MAPE} across 4 GPU architectures, 2 kernels, zero fitted coefficients.
-  \item \textbf{Triton pre-filter} prunes \cpasync{} stage candidates in autotuning search space.
+  \item \textbf{Pipeline tuning is not portable.} Peak GEMM speedup ranges from \textbf{1.0$\times$ (L40S) to 1.20$\times$ (H100)} on identical code.
 \end{enumerate}
 \end{block}
 

@@ -117,7 +117,7 @@ def table_gpu_specs(plt, dpi):
         ["SMEM/SM",     "96 K",  "100 K",  "164 K",    "100 K",  "228 K"],
         ["Ridge",       "17.4",  "53.7",   "7.9",      "52.9",   "20.0"],
         ["L2 nominal",  "6 MB",  "6 MB",   "20 MB",    "96 MB",  "50 MB"],
-        ["L2 effective","8 MB",  "8 MB",   "24 MB",    "112 MB", "28 MB"],
+        ["L2 effective","6.5 MB","6 MB",   "21 MB",    "96 MB",  "26 MB"],
     ]
     highlight_row = len(rows) - 1   # "L2 effective" row
     col_widths = [0.20, 0.16, 0.16, 0.16, 0.16, 0.16]
@@ -163,7 +163,7 @@ def table_gpu_specs(plt, dpi):
     # key note
     note_y = top - hdr_h - len(rows) * row_h - 0.06
     ax.text(pad, note_y,
-            "Key: L2 effective ≠ nominal on all GPUs. H100: 50 → 28 MB (slice locality). L40S: 96 → 112 MB.",
+            "Key: L2 effective ≈ nominal on most GPUs (within ~5%). Only H100 differs: 50 → 26 MB (slice locality).",
             transform=ax.transAxes, fontsize=8.5, color="#555555", style="italic")
 
     ax.set_title("Hardware: 5 GPU Architectures", fontsize=12, fontweight="bold",
@@ -177,11 +177,11 @@ def table_gpu_specs(plt, dpi):
 def table_model_accuracy(plt, dpi):
     col_labels = ["GPU", "GEMM MAPE", "Stencil MAPE"]
     rows = [
-        ["A40",      "11.1%", "4.1%"],
+        ["A40",      "10.4%", "4.1%"],
         ["A100 MIG", "9.2%",  "6.7%"],
-        ["L40S",     "5.7%",  "7.2%"],
-        ["H100",     "9.9%",  "5.5%"],
-        ["Overall",  "9.0%",  "5.9%"],
+        ["L40S",     "6.5%",  "6.3%"],
+        ["H100",     "9.7%",  "3.7%"],
+        ["Overall",  "9.0%",  "5.2%"],
     ]
     highlight_row = len(rows) - 1  # Overall
     col_widths = [0.34, 0.33, 0.33]
