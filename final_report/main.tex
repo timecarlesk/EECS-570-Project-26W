@@ -236,7 +236,7 @@ resulting roofline positions.  Kernels live in
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{outputs/figures/roofline.png}
+\includegraphics[width=\linewidth]{roofline.png}
 \caption{Roofline positions for V0/V1/V3 on all five GPUs.  V0 sits
 at AI$\approx$0.25; V1/V3 tiling lifts GEMM AI to $T/4$
 (up to $\approx$32); stencil AI is $\approx$7\,FLOP/B.}
@@ -275,7 +275,7 @@ Table~\ref{tab:gpus}).
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{outputs/figures/l2_characterization_v2.png}
+\includegraphics[width=\linewidth]{l2_characterization_v2.png}
 \caption{Pointer-chase latency vs.\ working-set size for four
 \cpasync{}-capable GPUs.  H100's cliff is at 26\,MB, far below its
 50\,MB nominal capacity.}
@@ -377,13 +377,13 @@ nor the 280-cycle floor is refit per GPU.
 \centering
 \begin{subfigure}{\linewidth}
 \centering
-\includegraphics[width=0.95\linewidth]{outputs/figures/gemm_cross_gpu_best.png}
+\includegraphics[width=0.95\linewidth]{gemm_cross_gpu_best.png}
 \caption{GEMM: best V3/V1 speedup vs.\ $N$.}
 \end{subfigure}
 \vspace{-2pt}
 \begin{subfigure}{\linewidth}
 \centering
-\includegraphics[width=0.95\linewidth]{outputs/figures/stencil_speedup_all.png}
+\includegraphics[width=0.95\linewidth]{stencil_speedup_all.png}
 \caption{Stencil: best V3/V1 speedup vs.\ $L$.}
 \end{subfigure}
 \caption{Cross-GPU divergence on identical source.  GEMM ranges
@@ -429,7 +429,7 @@ Per-$(N,S)$ maps are in the artefact repository.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\linewidth]{outputs/figures/pred_vs_meas_scatter.png}
+\includegraphics[width=0.95\linewidth]{pred_vs_meas_scatter.png}
 \caption{Predicted vs.\ measured speedup across four
 \cpasync{}-capable GPUs; each point is one $(N,T,S)$.  Most lie
 within $\pm 10\%$ of $y{=}x$.}

@@ -2,14 +2,15 @@
 \BOOKMARK [1][-]{section.2}{Background and Related Work}{}% 2
 \BOOKMARK [1][-]{section.3}{Experimental Setup}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Hardware}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Kernel Variants and Sweep}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{L2 Cache Microbenchmark}{}% 6
-\BOOKMARK [1][-]{section.5}{Predictive Model}{}% 7
-\BOOKMARK [2][-]{subsection.5.1}{Step 1: Effective Memory Latency \(H1\)}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.2}{Step 2: Per-Stage Compute Time \(empirical floor\)}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.3}{Step 3: Predicted Speedup \(H2, H3\)}{section.5}% 10
-\BOOKMARK [1][-]{section.6}{Results}{}% 11
-\BOOKMARK [2][-]{subsection.6.1}{Cross-GPU Divergence}{section.6}% 12
-\BOOKMARK [1][-]{section.7}{Validation}{}% 13
-\BOOKMARK [1][-]{section.8}{Triton Autotune Pre-Filter}{}% 14
-\BOOKMARK [1][-]{section.9}{Discussion and Conclusions}{}% 15
+\BOOKMARK [2][-]{subsection.3.2}{Kernel Variants}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Sweep and Timing}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{L2 Cache Microbenchmark}{}% 7
+\BOOKMARK [1][-]{section.5}{Predictive Model}{}% 8
+\BOOKMARK [2][-]{subsection.5.1}{Step 1: Effective Memory Latency \(H1\)}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.2}{Step 2: Per-Stage Compute Time \(empirical floor\)}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.3}{Step 3: Predicted Speedup \(H2, H3\)}{section.5}% 11
+\BOOKMARK [1][-]{section.6}{Results}{}% 12
+\BOOKMARK [2][-]{subsection.6.1}{Cross-GPU Divergence}{section.6}% 13
+\BOOKMARK [1][-]{section.7}{Validation}{}% 14
+\BOOKMARK [1][-]{section.8}{Triton Autotune Pre-Filter}{}% 15
+\BOOKMARK [1][-]{section.9}{Discussion and Conclusions}{}% 16
