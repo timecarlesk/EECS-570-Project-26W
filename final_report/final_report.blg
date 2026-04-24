@@ -4,45 +4,45 @@ The top-level auxiliary file: final_report.aux
 The style file: plain.bst
 Database file #1: refs-3.bib
 Warning--can't use both volume and number fields in mei_dissecting
-You've used 18 entries,
+You've used 17 entries,
             2118 wiz_defined-function locations,
-            582 strings with 7157 characters,
-and the built_in function-call counts, 5991 in all, are:
-= -- 537
-> -- 366
+            578 strings with 7010 characters,
+and the built_in function-call counts, 5719 in all, are:
+= -- 514
+> -- 353
 < -- 3
-+ -- 144
-- -- 126
-* -- 396
-:= -- 1025
-add.period$ -- 55
-call.type$ -- 18
-change.case$ -- 114
++ -- 139
+- -- 122
+* -- 383
+:= -- 980
+add.period$ -- 52
+call.type$ -- 17
+change.case$ -- 109
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 224
-empty$ -- 465
-format.name$ -- 126
-if$ -- 1235
+cite$ -- 18
+duplicate$ -- 210
+empty$ -- 437
+format.name$ -- 122
+if$ -- 1176
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 15
-newline$ -- 94
-num.names$ -- 36
-pop$ -- 152
+int.to.str$ -- 17
+missing$ -- 14
+newline$ -- 89
+num.names$ -- 34
+pop$ -- 143
 preamble$ -- 1
-purify$ -- 96
+purify$ -- 92
 quote$ -- 0
-skip$ -- 151
+skip$ -- 143
 stack$ -- 0
-substring$ -- 198
-swap$ -- 43
+substring$ -- 193
+swap$ -- 41
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 68
 warning$ -- 1
-while$ -- 48
-width$ -- 20
-write$ -- 190
+while$ -- 46
+width$ -- 19
+write$ -- 180
 (There was 1 warning)

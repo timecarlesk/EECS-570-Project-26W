@@ -53,12 +53,6 @@ Xinxin Mei and Xiaowen Chu.
 \newblock {CUDA C++ Programming Guide}, v12.8: Asynchronous data copies.
 \newblock \url{https://docs.nvidia.com/cuda/cuda-c-programming-guide/}, 2025.
 
-\bibitem{wasp}
-Tharindu Ranasinghe and Anand Raghunathan.
-\newblock {WASP}: Workload-aware warp scheduling for productive and efficient
-  {GPU} execution.
-\newblock In {\em Proceedings of HPCA}, 2024.
-
 \bibitem{flashattn3}
 Jay Shah, Ganesh Bikshandi, Ying Zhang, Vijay Thakkar, Pradeep Ramani, and Tri
   Dao.

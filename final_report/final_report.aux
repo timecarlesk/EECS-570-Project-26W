@@ -22,131 +22,94 @@
 \citation{triton}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{The portability gap.}{1}{section*.1}}
+\@writefile{toc}{\contentsline {paragraph}{Portability gap.}{1}{section*.1}}
 \@writefile{toc}{\contentsline {paragraph}{Research question.}{1}{section*.2}}
+\@writefile{toc}{\contentsline {paragraph}{Approach.}{1}{section*.3}}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.4}}
 \citation{cuda_guide}
 \citation{hopper_ieee}
 \citation{hopper_microbench}
-\citation{roofline}
 \citation{dtcspmm}
 \citation{tawa}
 \citation{twill}
-\citation{hytis}
-\citation{gpu_noc}
+\citation{roofline}
 \citation{mei_dissecting}
-\citation{mig_guide}
+\citation{gpu_noc}
+\citation{hytis}
 \citation{tritonblas}
 \citation{acta}
 \citation{triton}
 \citation{layer_conditions}
-\@writefile{toc}{\contentsline {paragraph}{Approach.}{2}{section*.3}}
-\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}}
-\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{The \texttt  {cp.async}{} instruction.}{2}{section*.5}}
-\@writefile{toc}{\contentsline {paragraph}{Roofline model.}{2}{section*.6}}
-\@writefile{toc}{\contentsline {paragraph}{\texttt  {cp.async}{} pipeline studies.}{2}{section*.7}}
-\@writefile{toc}{\contentsline {paragraph}{GPU L2 characterisation.}{2}{section*.8}}
-\@writefile{toc}{\contentsline {paragraph}{Analytical models and autotuning.}{2}{section*.9}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Hypotheses}{2}{section.3}}
-\newlabel{sec:hypotheses}{{3}{2}{Hypotheses}{section.3}{}}
+\citation{mig_guide}
 \citation{mei_dissecting}
 \citation{hopper_ieee}
 \citation{gpu_noc}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}}
-\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hardware}{3}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Kernel Variants}{3}{subsection.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Workload Sweep and Timing}{3}{subsection.4.3}}
-\newlabel{sec:sweep}{{4.3}{3}{Workload Sweep and Timing}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}L2 Cache Microbenchmark}{3}{section.5}}
-\newlabel{sec:microbench}{{5}{3}{L2 Cache Microbenchmark}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Method}{3}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{3}{subsection.5.2}}
 \citation{mig_guide}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Target GPUs. Ridge point $R$ is in FLOP/byte. Effective L2 capacity is measured via pointer chase (Section\nobreakspace  {}\ref  {sec:microbench}); nominal is from \texttt  {cudaDeviceProp}.\relax }}{4}{table.caption.10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}}
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {cp.async}{} and pipeline studies.}{2}{section*.5}}
+\@writefile{toc}{\contentsline {paragraph}{L2 characterisation and autotuning.}{2}{section*.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}}
+\newlabel{sec:setup}{{3}{2}{Experimental Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Hardware}{2}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Kernel Variants and Sweep}{2}{subsection.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Roofline on all five GPUs. V0 (naive global) sits at AI$\approx $0.25; V1/V3 tiling lifts GEMM AI to $T/4$ (up to $\approx $32); stencil algorithmic AI is $\approx $7 (28\tmspace  +\thinmuskip {.1667em}FLOP/elem, 4\tmspace  +\thinmuskip {.1667em}B/elem). V100 (no \texttt  {cp.async}{}) shows V0/V1 only as a boundary; V3 displaces upward over V1 where cp.async helps (H100, A100-MIG) and collapses onto V1 where it doesn't (L40S).\relax }}{2}{figure.caption.8}}
+\newlabel{fig:roofline}{{1}{2}{Roofline on all five GPUs. V0 (naive global) sits at AI$\approx $0.25; V1/V3 tiling lifts GEMM AI to $T/4$ (up to $\approx $32); stencil algorithmic AI is $\approx $7 (28\,FLOP/elem, 4\,B/elem). V100 (no \cpasync {}) shows V0/V1 only as a boundary; V3 displaces upward over V1 where cp.async helps (H100, A100-MIG) and collapses onto V1 where it doesn't (L40S).\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}L2 Cache Microbenchmark}{2}{section.4}}
+\newlabel{sec:microbench}{{4}{2}{L2 Cache Microbenchmark}{section.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Target GPUs. Ridge $R$ in FLOP/byte. L2 eff./$L_{\text  {L2}}$/$L_{\text  {DRAM}}$ are pointer-chase outputs (Section\nobreakspace  {}\ref  {sec:microbench}); nominal from \texttt  {cudaDeviceProp}. Latencies in cycles.\relax }}{3}{table.caption.7}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:gpus}{{1}{4}{Target GPUs. Ridge point $R$ is in FLOP/byte. Effective L2 capacity is measured via pointer chase (Section~\ref {sec:microbench}); nominal is from \texttt {cudaDeviceProp}.\relax }{table.caption.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Microbenchmarked L2 parameters. All latencies in cycles; capacities in MB.\relax }}{4}{table.caption.12}}
-\newlabel{tab:microbench}{{2}{4}{Microbenchmarked L2 parameters. All latencies in cycles; capacities in MB.\relax }{table.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Pointer-chase latency vs.\ working-set size for four \texttt  {cp.async}{}-capable GPUs. Each GPU shows a flat L2 plateau (low latency), a cliff at its effective L2 capacity, and a DRAM plateau. H100's effective L2 cliff is at 26\tmspace  +\thinmuskip {.1667em}MB---far below its 50\tmspace  +\thinmuskip {.1667em}MB nominal capacity.\relax }}{4}{figure.caption.11}}
-\newlabel{fig:l2char}{{1}{4}{Pointer-chase latency vs.\ working-set size for four \cpasync {}-capable GPUs. Each GPU shows a flat L2 plateau (low latency), a cliff at its effective L2 capacity, and a DRAM plateau. H100's effective L2 cliff is at 26\,MB---far below its 50\,MB nominal capacity.\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Predictive Model}{4}{section.6}}
-\newlabel{sec:model}{{6}{4}{Predictive Model}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Step 1: Effective Memory Latency (from H1)}{5}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Step 2: Per-Stage Compute Time with Overhead Floor}{5}{subsection.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Step 3: Predicted Speedup (from H2, H3)}{5}{subsection.6.3}}
-\newlabel{eq:speedup}{{6}{5}{Step 3: Predicted Speedup (from H2, H3)}{equation.6.6}{}}
-\@writefile{toc}{\contentsline {paragraph}{Overlap benefit.}{5}{section*.13}}
-\@writefile{toc}{\contentsline {paragraph}{Occupancy penalty, $\alpha = 0.15$.}{5}{section*.14}}
-\@writefile{toc}{\contentsline {paragraph}{Why the model is parameter-free despite few GPUs.}{5}{section*.15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Cross-GPU divergence of \texttt  {cp.async}{} pipeline effectiveness on identical source. GEMM speedup ranges from 1.00$\times $ (L40S) to 1.20$\times $ (H100); stencil from 0.94$\times $ to 1.07$\times $. Pipeline tuning on one GPU does not transfer.\relax }}{6}{figure.caption.16}}
-\newlabel{fig:raw}{{2}{6}{Cross-GPU divergence of \cpasync {} pipeline effectiveness on identical source. GEMM speedup ranges from 1.00$\times $ (L40S) to 1.20$\times $ (H100); stencil from 0.94$\times $ to 1.07$\times $. Pipeline tuning on one GPU does not transfer.\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{6}{section.7}}
-\newlabel{sec:results}{{7}{6}{Results}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Raw Speedup: Pipeline Effectiveness Diverges}{6}{subsection.7.1}}
-\newlabel{sec:raw}{{7.1}{6}{Raw Speedup: Pipeline Effectiveness Diverges}{subsection.7.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Best pipeline depth $S^*$ as a function of problem size. Entries are $(S^*, \text  {speedup})$. $S^*$ is non-constant per GPU (contradicting the tune-once assumption) and varies across GPUs at the same $N$.\relax }}{6}{figure.caption.17}}
-\newlabel{fig:beststage}{{3}{6}{Best pipeline depth $S^*$ as a function of problem size. Entries are $(S^*, \text {speedup})$. $S^*$ is non-constant per GPU (contradicting the tune-once assumption) and varies across GPUs at the same $N$.\relax }{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Best-Stage Maps}{6}{subsection.7.2}}
-\newlabel{sec:beststage}{{7.2}{6}{Best-Stage Maps}{subsection.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Hypothesis Assessment}{6}{subsection.7.3}}
-\newlabel{sec:hypoassess}{{7.3}{6}{Hypothesis Assessment}{subsection.7.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Predicted vs.\ measured speedup scatter across all four \texttt  {cp.async}{}-capable GPUs. Each point is one $(N, T, S)$ configuration; colour encodes GPU. The $y = x$ diagonal is the ideal predictor.\relax }}{7}{figure.caption.18}}
-\newlabel{fig:scatter}{{4}{7}{Predicted vs.\ measured speedup scatter across all four \cpasync {}-capable GPUs. Each point is one $(N, T, S)$ configuration; colour encodes GPU. The $y = x$ diagonal is the ideal predictor.\relax }{figure.caption.18}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Validation}{7}{section.8}}
-\newlabel{sec:validation}{{8}{7}{Validation}{section.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Per-GPU MAPE}{7}{subsection.8.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Model accuracy (MAPE = mean absolute percentage error) per GPU and workload.\relax }}{7}{table.caption.19}}
-\newlabel{tab:mape}{{3}{7}{Model accuracy (MAPE = mean absolute percentage error) per GPU and workload.\relax }{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Leave-One-Out Cross-Validation}{7}{subsection.8.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Ablation: Each Model Component is Load-Bearing}{7}{subsection.8.3}}
-\newlabel{sec:ablation}{{8.3}{7}{Ablation: Each Model Component is Load-Bearing}{subsection.8.3}{}}
+\newlabel{tab:gpus}{{1}{3}{Target GPUs. Ridge $R$ in FLOP/byte. L2 eff./$\LLtwo $/$\Ldram $ are pointer-chase outputs (Section~\ref {sec:microbench}); nominal from \texttt {cudaDeviceProp}. Latencies in cycles.\relax }{table.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pointer-chase latency vs.\ working-set size for four \texttt  {cp.async}{}-capable GPUs. H100's cliff is at 26\tmspace  +\thinmuskip {.1667em}MB, far below its 50\tmspace  +\thinmuskip {.1667em}MB nominal capacity.\relax }}{3}{figure.caption.9}}
+\newlabel{fig:l2char}{{2}{3}{Pointer-chase latency vs.\ working-set size for four \cpasync {}-capable GPUs. H100's cliff is at 26\,MB, far below its 50\,MB nominal capacity.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Predictive Model}{3}{section.5}}
+\newlabel{sec:model}{{5}{3}{Predictive Model}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Step 1: Effective Memory Latency (H1)}{3}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Step 2: Per-Stage Compute Time (empirical floor)}{3}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Step 3: Predicted Speedup (H2, H3)}{3}{subsection.5.3}}
+\newlabel{eq:speedup}{{4}{3}{Step 3: Predicted Speedup (H2, H3)}{equation.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-GPU divergence on identical source. GEMM ranges 1.00$\times $ (L40S) to 1.20$\times $ (H100); stencil 0.94$\times $ to 1.07$\times $. Tuning does not transfer.\relax }}{4}{figure.caption.10}}
+\newlabel{fig:raw}{{3}{4}{Cross-GPU divergence on identical source. GEMM ranges 1.00$\times $ (L40S) to 1.20$\times $ (H100); stencil 0.94$\times $ to 1.07$\times $. Tuning does not transfer.\relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{4}{section.6}}
+\newlabel{sec:results}{{6}{4}{Results}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Cross-GPU Divergence}{4}{subsection.6.1}}
+\newlabel{sec:raw}{{6.1}{4}{Cross-GPU Divergence}{subsection.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Predicted vs.\ measured speedup across four \texttt  {cp.async}{}-capable GPUs; each point is one $(N,T,S)$. Most lie within $\pm 10\%$ of $y{=}x$.\relax }}{4}{figure.caption.11}}
+\newlabel{fig:scatter}{{4}{4}{Predicted vs.\ measured speedup across four \cpasync {}-capable GPUs; each point is one $(N,T,S)$. Most lie within $\pm 10\%$ of $y{=}x$.\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Validation}{4}{section.7}}
+\newlabel{sec:validation}{{7}{4}{Validation}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-GPU MAPE and component ablation. The LOO column equals the base column because no kernel data is used for fitting, so a pointer-chase microbench on a new GPU is sufficient deployment data.\relax }}{4}{table.caption.12}}
+\newlabel{tab:mape}{{2}{4}{Per-GPU MAPE and component ablation. The LOO column equals the base column because no kernel data is used for fitting, so a pointer-chase microbench on a new GPU is sufficient deployment data.\relax }{table.caption.12}{}}
 \citation{triton}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ablation of each model component. Removing the 280-cycle floor catastrophically damages stencil accuracy; using nominal instead of effective L2 inflates GEMM error most on H100.\relax }}{8}{table.caption.20}}
-\newlabel{tab:ablation}{{4}{8}{Ablation of each model component. Removing the 280-cycle floor catastrophically damages stencil accuracy; using nominal instead of effective L2 inflates GEMM error most on H100.\relax }{table.caption.20}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Triton Autotune Pre-Filter}{8}{section.9}}
-\newlabel{sec:triton}{{9}{8}{Triton Autotune Pre-Filter}{section.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Motivation}{8}{subsection.9.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Implementation}{8}{subsection.9.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Search-Space Reduction}{8}{subsection.9.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pre-filter pruning results on a 96-configuration GEMM grid. ``Kept'' means the configuration survived the pre-filter; ``Pruned'' means the model predicted no benefit. In all cases the measured best configuration was retained.\relax }}{8}{table.caption.21}}
-\newlabel{tab:prefilter}{{5}{8}{Pre-filter pruning results on a 96-configuration GEMM grid. ``Kept'' means the configuration survived the pre-filter; ``Pruned'' means the model predicted no benefit. In all cases the measured best configuration was retained.\relax }{table.caption.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Discussion}{8}{section.10}}
-\newlabel{sec:discussion}{{10}{8}{Discussion}{section.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{Why does the 280-cycle floor generalise?}{8}{section*.22}}
-\@writefile{toc}{\contentsline {paragraph}{Why is occupancy loss sub-linear?}{8}{section*.23}}
-\citation{hopper_ieee}
-\citation{gpu_noc}
-\citation{tawa}
-\citation{wasp}
 \citation{tawa}
 \citation{twill}
 \bibstyle{plain}
 \bibdata{refs-3}
 \bibcite{tawa}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Triton Autotune Pre-Filter}{5}{section.8}}
+\newlabel{sec:triton}{{8}{5}{Triton Autotune Pre-Filter}{section.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pre-filter pruning on a 96-config GEMM grid ($8\tmspace  +\thinmuskip {.1667em}N \times 4\tmspace  +\thinmuskip {.1667em}T \times 3\tmspace  +\thinmuskip {.1667em}S$, $S \in \{2,3,4\}$). FN counts configurations whose measured speedup exceeds $1{+}\epsilon $ but whose stage was pruned.\relax }}{5}{table.caption.13}}
+\newlabel{tab:prefilter}{{3}{5}{Pre-filter pruning on a 96-config GEMM grid ($8\,N \times 4\,T \times 3\,S$, $S \in \{2,3,4\}$). FN counts configurations whose measured speedup exceeds $1{+}\epsilon $ but whose stage was pruned.\relax }{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion and Conclusions}{5}{section.9}}
+\newlabel{sec:conclusions}{{9}{5}{Discussion and Conclusions}{section.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical heuristic.}{5}{section*.14}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{5}{section*.15}}
+\@writefile{toc}{\contentsline {paragraph}{Summary of findings.}{5}{section*.16}}
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{5}{section*.17}}
+\@writefile{toc}{\contentsline {paragraph}{Artefact.}{5}{section*.18}}
 \bibcite{hopper_ieee}{2}
 \bibcite{layer_conditions}{3}
-\@writefile{toc}{\contentsline {paragraph}{Why does H100's L2 slice locality show up at 26\tmspace  +\thinmuskip {.1667em}MB?}{9}{section*.24}}
-\@writefile{toc}{\contentsline {paragraph}{Model limitations.}{9}{section*.25}}
-\@writefile{toc}{\contentsline {paragraph}{When can practitioners reuse a tuned $S$?}{9}{section*.26}}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusions}{9}{section.11}}
-\newlabel{sec:conclusions}{{11}{9}{Conclusions}{section.11}{}}
-\@writefile{toc}{\contentsline {paragraph}{Future work.}{9}{section*.27}}
-\@writefile{toc}{\contentsline {paragraph}{Artefact availability.}{9}{section*.28}}
-\@writefile{toc}{\contentsline {paragraph}{Division of labour.}{9}{section*.29}}
 \bibcite{tritonblas}{4}
 \bibcite{gpu_noc}{5}
 \bibcite{dtcspmm}{6}
 \bibcite{mei_dissecting}{7}
 \bibcite{mig_guide}{8}
 \bibcite{cuda_guide}{9}
-\bibcite{wasp}{10}
-\bibcite{flashattn3}{11}
-\bibcite{cutlass3}{12}
-\bibcite{triton}{13}
-\bibcite{hopper_microbench}{14}
-\bibcite{hytis}{15}
-\bibcite{roofline}{16}
-\bibcite{twill}{17}
-\bibcite{acta}{18}
+\bibcite{flashattn3}{10}
+\bibcite{cutlass3}{11}
+\bibcite{triton}{12}
+\bibcite{hopper_microbench}{13}
+\bibcite{hytis}{14}
+\bibcite{roofline}{15}
+\bibcite{twill}{16}
+\bibcite{acta}{17}

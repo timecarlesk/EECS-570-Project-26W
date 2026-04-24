@@ -1,7 +1,9 @@
-"""GPU parameter table derived from proposal_rq2.tex.
+"""GPU parameter table.
 
-Values for latency/clock are placeholders until replaced by real
-microbenchmark measurements.
+Latency and effective-L2 values are the pointer-chase microbenchmark
+outputs recorded in outputs/<gpu>/l2_params.json (2026-04 runs).
+Architecture fields (SM count, SMEM/SM, peak FLOPS, BW) are from
+cudaDeviceProp / datasheets.
 """
 
 from collections import OrderedDict
@@ -20,13 +22,13 @@ GPU_SPECS = OrderedDict(
                 "n_sm": 80,
                 "smem_per_sm_kb": 96,
                 "l2_nominal_mb": 6.0,
-                "l2_eff_mb": 6.5,
+                "l2_eff_mb": 8.0,
                 "bw_gbps": 900.0,
                 "fp32_tflops": 15.7,
                 "ridge": 17.4,
                 "sm_clock_ghz": 1.50,
-                "l2_latency_cycles": 219.1,
-                "dram_latency_cycles": 426.8,
+                "l2_latency_cycles": 209.0,
+                "dram_latency_cycles": 413.0,
                 "max_blocks_per_sm": 32,
                 "occupancy_alpha": 0.15,
             },
@@ -45,8 +47,8 @@ GPU_SPECS = OrderedDict(
                 "fp32_tflops": 37.4,
                 "ridge": 53.7,
                 "sm_clock_ghz": 1.74,
-                "l2_latency_cycles": 254.0,
-                "dram_latency_cycles": 559.1,
+                "l2_latency_cycles": 256.0,
+                "dram_latency_cycles": 556.0,
                 "max_blocks_per_sm": 32,
                 "occupancy_alpha": 0.15,
             },
@@ -60,13 +62,13 @@ GPU_SPECS = OrderedDict(
                 "n_sm": 42,
                 "smem_per_sm_kb": 164,
                 "l2_nominal_mb": 20.0,
-                "l2_eff_mb": 21.0,
+                "l2_eff_mb": 20.0,
                 "bw_gbps": 968.0,
                 "fp32_tflops": 7.6,
                 "ridge": 7.9,
                 "sm_clock_ghz": 1.41,
-                "l2_latency_cycles": 199.0,
-                "dram_latency_cycles": 446.7,
+                "l2_latency_cycles": 201.0,
+                "dram_latency_cycles": 465.0,
                 "max_blocks_per_sm": 32,
                 "occupancy_alpha": 0.15,
             },
