@@ -1,4 +1,4 @@
-# Project 2: cp.async Pipeline (Implementation)
+# Project : cp.async Pipeline (Implementation)
 
 This repo implements the full workflow described in `proposal_rq2.tex`:
 
